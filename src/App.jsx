@@ -1,26 +1,34 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-import './App.css'
+import './App.css';
+import rules from './rules';
+
+const applyMarkdownRules = (input) => {
+    rules.forEach(rule => {
+        input = input.replace(rule[0], rule[1]);
+    });
+    return input;
+}
 
 function App() {
-  // const [count, setCount] = useState(0)
-  const [userInput, setUserInput] = useState("");
-  const [markdownpreview, setMarkdownPreview] = useState("");
+    const [userInput, setUserInput] = useState("");
+    const [markdownpreview, setMarkdownPreview] = useState("");
 
-  const handleInput = ev => {
-    const newUserInput = (ev.target.value);
-    setUserInput(newUserInput)
-    setMarkdownPreview(newUserInput.replace(/#{3}\s([^\n]+)?/g, "<h3>$1</h3>"));
-  }
+    const handleInput = ev => {
+        const newUserInput = (ev.target.value);
+        setUserInput(newUserInput);
+        setMarkdownPreview(applyMarkdownRules(newUserInput));
+    }
 
-  return (
-    <>
-      <label htmlFor="userInput">Enter markdown headers: </label>
-      <input type="text" id='userInput' onChange={handleInput} value={userInput} />
-      <br />
-      <div>Output: <br /> {markdownpreview}</div>
-    </>
-  )
+    return (
+        <>
+            <label htmlFor="userInput">Enter markdown headers: </label>
+            <textarea type="text" id='userInput' onChange={handleInput} value={userInput}> </textarea>
+            <br />
+            <div>Output: </div>
+            <div dangerouslySetInnerHTML={{ __html: markdownpreview }}></div>
+        </>
+    )
 }
 
 export default App;
