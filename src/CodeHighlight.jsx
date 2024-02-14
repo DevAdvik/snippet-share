@@ -1,38 +1,24 @@
-import { useState, StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-import hljs from 'highlight.js/lib/common';
-import 'highlight.js/styles/base16/hardcore.css';
+import hljs from "highlight.js/lib/common";
+import "highlight.js/styles/base16/hardcore.css";
+import "./styles/CodeHighlight.css";
 
-
-function CodeInput() {
-    const [inputCode, setInputCode] = useState("");
-    const handleCodeInput = ev => {
-        setInputCode(ev.target.value);
-        const elements = document.querySelectorAll("pre code");
-        elements.forEach(hljs.highlightBlock);
-    }
-
+function CodeInput({ code }) {
+    // const [inputCode, setInputCode] = useState("");
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("pre code").forEach((el) => {
+            hljs.highlightElement(el);
+        });
+    });
 
     return (
         <>
-            <div className="editCode">
-                <textarea name="userCode" value={inputCode} onChange={handleCodeInput}></textarea>
-                <button type='button'>Cancel</button>
-                <button type="button">Save</button>
-            </div>
             <div className="preview">
                 <pre>
-                    <code>
-                        {inputCode}
-                    </code>
+                    <code>{code}</code>
                 </pre>
             </div>
         </>
-    )
+    );
 }
 
-createRoot(document.getElementById("root")).render(
-    <StrictMode>
-        <CodeInput />
-    </StrictMode>
-)
+export default CodeInput;

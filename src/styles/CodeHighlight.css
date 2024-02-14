@@ -9,3 +9,6 @@ html {
     box-sizing: border-box;
 }
 
+pre {
+    max-width: 600px;
+}
