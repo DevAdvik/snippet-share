@@ -1,15 +1,16 @@
 import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/base16/hardcore.css";
+import "highlight.js/styles/atom-one-dark-reasonable.css";
 import "./styles/CodeHighlight.css";
 
 function CodeInput({ code }) {
-    // const [inputCode, setInputCode] = useState("");
     document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll("pre code").forEach((el) => {
             hljs.highlightElement(el);
         });
     });
+    console.log(hljs.listLanguages());
 
+    // className="language-javascript"
     return (
         <>
             <div className="preview">

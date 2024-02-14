@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 // import App from './App.jsx';
-import CodeInput from "./CodeHighlight.jsx";
+import CodeInput from "./CodePreview.jsx";
 import "./styles/index.css";
 // import CodeBlock from './CodeHighlight.jsx';
 
 const code = `
-    const heyman = 'hi';
+    let heyman = 'hi';
     function saySomething() {
         return "OK!OK!OK!";
     }
