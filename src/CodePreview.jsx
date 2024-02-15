@@ -8,14 +8,24 @@ function CodeInput({ code }) {
             hljs.highlightElement(el);
         });
     });
-    console.log(hljs.listLanguages());
 
-    // className="language-javascript"
+    const reRenderHighlight = (e) => {
+        console.log(e.target.dataset.highlighted);
+    };
+
+    // console.log(hljs.listLanguages());
+
     return (
         <>
             <div className="preview">
                 <pre>
-                    <code>{code}</code>
+                    <code
+                        onClick={(e) => {
+                            reRenderHighlight(e);
+                        }}
+                    >
+                        {code}
+                    </code>
                 </pre>
             </div>
         </>

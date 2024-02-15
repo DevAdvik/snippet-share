@@ -3,11 +3,10 @@ import ReactDOM from "react-dom/client";
 // import App from './App.jsx';
 import CodeInput from "./CodePreview.jsx";
 import "./styles/index.css";
-// import CodeBlock from './CodeHighlight.jsx';
 
 const code = `
-import hljs from "highlight.js/lib/common";
-import "highlight.js/styles/atom-one-dark-reasonable.css";
+import hljs from "./requiredHighlights";
+import "highlight.js/styles/base16/material-darker.css";
 import "./styles/CodePreview.css";
 
 function CodeInput({ code }) {
@@ -16,10 +15,9 @@ function CodeInput({ code }) {
             hljs.highlightElement(el);
         });
     });
-    console.log(hljs.listLanguages());
 
-    // className="language-javascript";
-	// Ok man, a comment
+    // console.log(hljs.listLanguages());
+
     return (
         <>
             <div className="preview">
@@ -30,6 +28,8 @@ function CodeInput({ code }) {
         </>
     );
 }
+
+export default CodeInput;
     `;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
