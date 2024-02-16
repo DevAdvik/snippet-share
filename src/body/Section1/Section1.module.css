@@ -1,0 +1,16 @@
+.main1{
+    width: 35%;
+    height: 90vh;
+    overflow: auto;
+    /* outline: 1px solid #e5e8f3; */
+    border-right: 2px solid #f1f1f1;
+}
+
+.heading{
+    margin: 10px auto;
+    /* text-align: center; */
+    /* border: 1px solid red; */
+    padding: 15px;
+    font-size: 2rem;
+}
+

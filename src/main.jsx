@@ -5,6 +5,7 @@ import CodeInput from "./CodePreview.jsx";
 import "./styles/index.css";
 import App from "./App.jsx";
 import Homepage from "./Home.jsx";
+import Wrapper from "./body/Wrapper.jsx";
 
 const code = `
 import hljs from "./requiredHighlights";
@@ -53,6 +54,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         {/* <App /> */}
         {/* <CodeInput code={code} /> */}
+        <Wrapper></Wrapper>
+
         <RouterProvider router={router} />
     </React.StrictMode>
 );

@@ -1,0 +1,12 @@
+.snippetView{
+    margin: 30px auto;
+    width: 90%;
+    padding-bottom: 20px;
+}
+
+code{
+    background-color: rgba(0, 0, 0, 0.7);
+    color: rgb(135, 250, 135);
+    padding: 20px;
+    border-radius: 5px;
+}
