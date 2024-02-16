@@ -1,8 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-// import App from './App.jsx';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CodeInput from "./CodePreview.jsx";
 import "./styles/index.css";
+import App from "./App.jsx";
+import Homepage from "./Home.jsx";
 
 const code = `
 import hljs from "./requiredHighlights";
@@ -32,9 +34,25 @@ function CodeInput({ code }) {
 export default CodeInput;
     `;
 
+const router = createBrowserRouter([
+    {
+        path: "/",
+        element: <Homepage />,
+    },
+    {
+        path: "/code",
+        element: <CodeInput code={code} />,
+    },
+    {
+        path: '/app',
+        element: <App />
+    }
+]);
+
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         {/* <App /> */}
-        <CodeInput code={code} />
+        {/* <CodeInput code={code} /> */}
+        <RouterProvider router={router} />
     </React.StrictMode>
 );

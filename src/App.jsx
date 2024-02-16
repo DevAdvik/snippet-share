@@ -1,10 +1,9 @@
-import { useState } from "react";
-import "./styles/App.css";
+// import { useState } from "react";
 
 function App() {
     return (
         <>
-            <div className="editText"></div>
+            <p>App</p>
         </>
     );
 }
