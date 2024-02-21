@@ -1,45 +1,50 @@
-export default function SnippetPage({ allSnippets, showSnippet, currentObj }) {
-    return (
-        <>
-            <SnippetList allSnippets={allSnippets} showSnippet={showSnippet} />
-            <SnippetContent snippetObj={currentObj} />
-        </>
-    );
-}
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import "../styles/Snippet.css";
+// import CodeEditor from "../CodeEditor";
 
-function SnippetList({ allSnippets, showSnippet }) {
+export default function SnippetList({ allSnippets, showSnippet }) {
     return (
         <>
-            <ul>
-                {console.log(allSnippets)}
-                {allSnippets.map((snippetObj) => {
+            <div className="leftWrapper">
+                <Header addSnippet={12} />
+                {allSnippets.map((snippet) => {
                     return (
-                        <li
-                            key={snippetObj.id}
-                            onClick={() => showSnippet(snippetObj.id)}
+                        <div
+                            className="singleSnippet"
+                            key={snippet.id}
+                            onClick={showSnippet}
                         >
-                            {snippetObj.title}
-                        </li>
+                            <h2 className="limit-lines limit2">
+                                {snippet.title}
+                            </h2>
+                            <p className="limit-lines limit3">
+                                {snippet.content}
+                            </p>
+                            <p>
+                                Created on:{" "}
+                                {new Date(snippet.createdAt).toLocaleString()}
+                            </p>
+                        </div>
                     );
                 })}
-            </ul>
+            </div>
         </>
     );
 }
 
-function SnippetContent({ snippetObj }) {
-    if (!snippetObj) {
-        return;
+function Header({ addSnippet }) {
+    if (!addSnippet) {
+        return <h1>My Snippets V2.</h1>;
     }
     return (
         <>
-            <h1>{snippetObj.title}</h1>
-            <p>Created on: {new Date(snippetObj.createdAt).toLocaleString()}</p>
-            <p>Public Link: </p>
-            <input type="checkbox" checked={snippetObj.isPublic} />
-            <pre>
-                <code>{snippetObj.content}</code>
-            </pre>
+            <h1>My Snippets</h1>
+            <div className="addDiv">
+                <h3>
+                    <FontAwesomeIcon icon={faPlus} /> Add new snippet
+                </h3>
+            </div>
         </>
     );
 }

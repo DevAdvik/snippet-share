@@ -1,6 +1,6 @@
 import { auth, firestore } from "./firebase";
 import "./styles/index.css";
-import SnippetPage from "./components/Snippet";
+import SnippetPage from "./components/SnippetTest";
 import SnippetWrapper from "./components/Wrapper";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";

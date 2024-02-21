@@ -1,4 +1,4 @@
-import SnippetList from "./SnippetList";
+import SnippetList from "./Snippet";
 import "../styles/Wrapper.css";
 import { useEffect, useState } from "react";
 import { auth, firestore } from "../firebase";

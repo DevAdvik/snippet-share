@@ -1,10 +1,13 @@
 import hljs from "./requiredHighlights";
-import "./styles/CodePreview.css";
+import "./styles/CodeEditor.css";
 import Editor from "react-simple-code-editor";
 import { useState } from "react";
 import "highlight.js/styles/base16/material-darker.css";
+import styled from "styled-components";
 
-function CodeInput({ code }) {
+
+
+export default function CodeEditor({ code }) {
     console.log(hljs.listLanguages());
     const [userCode, setUserCode] = useState("");
 
@@ -23,4 +26,3 @@ function CodeInput({ code }) {
     );
 }
 
-export default CodeInput;
