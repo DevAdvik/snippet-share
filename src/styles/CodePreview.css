@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'NeueMetana';
+    src: url('../assets/Fonts/neuemetanamono-light.otf');
+}
+
 html {
     height: 100%;
     width: 100%;
@@ -9,6 +14,11 @@ html {
     box-sizing: border-box;
 }
 
-pre {
-    max-width: 600px;
+.editor {
+    max-width: 800px;
+    line-height: 1.4;
+    background-color: black;
+    font-family: 'NeueMetana', monospace;
+    font-size: 0.9rem;
+    color: white;
 }

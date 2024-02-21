@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import CodeInput from "./CodePreview.jsx";
-import "./styles/index.css";
+// import "./styles/index.css";
 import App from "./App.jsx";
 import Homepage from "./Home.jsx";
 import Wrapper from "./body/Wrapper.jsx";
+import Login from "./components/login.jsx";
+import SnippetWrapper from "./components/Wrapper.jsx";
 
 const code = `
 import hljs from "./requiredHighlights";
@@ -45,16 +47,28 @@ const router = createBrowserRouter([
         element: <CodeInput code={code} />,
     },
     {
-        path: '/app',
-        element: <App />
-    }
+        path: "/app",
+        element: <App />,
+    },
+    {
+        path: "/login",
+        element: <Login />,
+    },
+    {
+        path: "/wrapper",
+        element: <Wrapper />,
+    },
+    {
+        path: "/customWrapper",
+        element: <SnippetWrapper />,
+    },
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
     <React.StrictMode>
         {/* <App /> */}
         {/* <CodeInput code={code} /> */}
-        <Wrapper></Wrapper>
+        {/* <Wrapper></Wrapper> */}
 
         <RouterProvider router={router} />
     </React.StrictMode>

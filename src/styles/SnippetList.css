@@ -1,0 +1,68 @@
+.leftWrapper {
+    background-color: #cadbec;
+    min-height: 100vh;
+    padding: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.addDiv {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    transition: .2s;
+    max-width: 450px;
+
+    &:hover {
+        cursor: pointer;
+        background-color: #e8e7e7;
+    }
+
+    &:active {
+        scale: 0.99;
+    }
+}
+
+.singleSnippet {
+    width: 100%;
+    padding: 10px;
+    background-color: #fbfbfb;
+    border-radius: 10px;
+    margin-top: 10px;
+    max-width: 450px;
+    cursor: pointer;
+
+    & p {
+        font-weight: 500;
+        margin: 12px;
+    }
+
+    & p:last-child {
+        font-weight: 400;
+        font-size: 0.9rem;
+        color: #2d2d2d;
+    }
+}
+
+.activeSnippet {
+    background-color: #e0e0e0;
+}
+
+
+.limit-lines {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+}
+
+.limit3 {
+    -webkit-line-clamp: 3;
+}
+
+.limit2 {
+    -webkit-line-clamp: 2;
+}
