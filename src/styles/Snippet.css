@@ -1,15 +1,13 @@
 .snippetWrapper {
     /* border: 1px solid; */
-    /* background-color: #121212; */
     min-height: 100vh;
     padding: 25px;
     display: flex;
     flex-direction: column;
-    /* flex-wrap: wrap; */
     gap: 10px;
     width: 100%;
     max-width: 1200px;
-    align-self: center;
+    margin: auto;
     color: #008170;
     font-family: 'Montserrat', sans-serif;
 }

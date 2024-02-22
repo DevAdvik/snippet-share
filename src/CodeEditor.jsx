@@ -39,12 +39,12 @@ export default function CodeEditor() {
                 return new Error("Snippet not found");
             }
         }
-        console.log("getting docref...");
         getSnippet(docRef)
             .then((data) => {
                 setTitle(data.title);
                 setUserCode(data.content);
-                setCreatedAt(data.createdAt);
+                const date = data.createdAt.seconds * 1000 + Math.floor(data.createdAt.nanoseconds / 1000000);
+                setCreatedAt(new Date(date).toLocaleString());
                 setUid(data.uid);
                 setLoading(false);
             })
@@ -70,7 +70,7 @@ export default function CodeEditor() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-                <p>Created On: {new Date(createdAt).toLocaleString()}</p>
+                <p>Created On: {createdAt}</p>
 
                 <div className="editor">
                     <Editor

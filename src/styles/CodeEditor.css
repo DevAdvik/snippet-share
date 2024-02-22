@@ -68,7 +68,7 @@
     font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 0.95rem;
     color: white;
-    border: 1px solid;
+    border: .5px solid #e0e0e0;
 
     & pre {
         width: 100%;
