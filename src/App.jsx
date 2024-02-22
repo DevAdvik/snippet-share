@@ -1,4 +1,4 @@
-import { auth, firestore } from "./firebase";
+import firebaseConfig from "./firebase";
 import "./styles/index.css";
 import SnippetPage from "./components/SnippetTest";
 import SnippetWrapper from "./components/Wrapper";

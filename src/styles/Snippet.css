@@ -50,26 +50,28 @@
 .snippetList {
     display: flex;
     flex-wrap: wrap;
-    /* border: 1px solid; */
     gap: 20px;
     justify-content: center;
-    /* align-items: flex-start; */
+
+    & a {
+        text-decoration: none;
+        color: #008170;
+        max-width: 370px;
+        width: 100%;
+    }
 }
 
 .singleSnippet {
-    width: 100%;
     padding: 10px;
     background-color: rgb(35 45 63/0.7);
     border-radius: 10px;
-    max-width: 370px;
     /* border: 1px solid; */
-    height: auto;
+    height: 100%;
     cursor: pointer;
     transition: .2s;
 
     & h2 {
         color: #e0e0e0;
-        cursor: text;
     }
 
     & p {

@@ -5,6 +5,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Snippet.css";
+import { Link } from "react-router-dom";
 
 export default function SnippetList({ allSnippets, showSnippet }) {
     return (
@@ -14,24 +15,26 @@ export default function SnippetList({ allSnippets, showSnippet }) {
                 <div className="snippetList">
                     {allSnippets.map((snippet) => {
                         return (
-                            <div
-                                className="singleSnippet"
-                                key={snippet.id}
-                                onClick={() => showSnippet(snippet.id)}
-                            >
-                                <h2 className="limit-lines limit2">
-                                    {snippet.title}
-                                </h2>
-                                <p className="limit-lines limit3">
-                                    {snippet.content}
-                                </p>
-                                <p>
-                                    Created on:{" "}
-                                    {new Date(
-                                        snippet.createdAt
-                                    ).toLocaleString()}
-                                </p>
-                            </div>
+                            <Link to={snippet.id} key={snippet.id}>
+                                <div
+                                    className="singleSnippet"
+                                    key={snippet.id}
+                                    onClick={() => showSnippet(snippet.id)}
+                                >
+                                    <h2 className="limit-lines limit2">
+                                        {snippet.title}
+                                    </h2>
+                                    <p className="limit-lines limit3">
+                                        {snippet.content}
+                                    </p>
+                                    <p>
+                                        Created on:{" "}
+                                        {new Date(
+                                            snippet.createdAt
+                                        ).toLocaleString()}
+                                    </p>
+                                </div>
+                            </Link>
                         );
                     })}
                 </div>

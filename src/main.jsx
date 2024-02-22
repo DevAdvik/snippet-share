@@ -8,6 +8,7 @@ import Homepage from "./Home.jsx";
 import Wrapper from "./body/Wrapper.jsx";
 import Login from "./components/login.jsx";
 import SnippetWrapper from "./components/Wrapper.jsx";
+import CodeEditor from "./CodeEditor.jsx";
 
 const code = `
 import hljs from "./requiredHighlights";
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
     },
     {
         path: "/code",
-        element: <CodeInput code={code} />,
+        element: <CodeInput />,
     },
     {
         path: "/app",
@@ -55,12 +56,12 @@ const router = createBrowserRouter([
         element: <Login />,
     },
     {
-        path: "/wrapper",
-        element: <Wrapper />,
+        path: "/snippets",
+        element: <SnippetWrapper />,
     },
     {
-        path: "/customWrapper",
-        element: <SnippetWrapper />,
+        path: "/snippets/:snippetId",
+        element: <CodeEditor />,
     },
 ]);
 

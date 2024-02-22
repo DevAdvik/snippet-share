@@ -1,43 +1,81 @@
 import hljs from "./requiredHighlights";
 import "./styles/CodeEditor.css";
-import Editor from "react-simple-code-editor";
-import { useState } from "react";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import "highlight.js/styles/base16/material-darker.css";
+import firebaseConfig from "./firebase";
+import { Loading } from "./components/Wrapper";
+
+import Editor from "react-simple-code-editor";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { useParams, useNavigate } from "react-router-dom";
+
 // import styled from "styled-components";
 
-export default function CodeEditor({
-    visibleSnippetObj,
-    setVisibleSnippetObj,
-    editSnippet,
-}) {
-    console.log(visibleSnippetObj);
-    const [userCode, setUserCode] = useState("console.log('ok man!')");
+let createdAt = new Date();
+export default function CodeEditor() {
+    const navigate = useNavigate();
+    const { snippetId } = useParams();
+    const [title, setTitle] = useState("loading...");
+    const [userCode, setUserCode] = useState("console.log('loading...')");
+    const [loading, setLoading] = useState(true);
+    const [uid, setUid] = useState(0);
+    const [snippetObj, setSnippetObj] = useState({});
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const firestore = getFirestore(app);
+    const [user] = useAuthState(auth);
+    const docRef = doc(firestore, "snippets", snippetId);
+
+    useEffect(() => {
+        async function getSnippet(docRef) {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                return docSnap.data();
+            } else {
+                return new Error("Snippet not found");
+            }
+        }
+        getSnippet(docRef)
+            .then((data) => {
+                setTitle(data.title);
+                setUserCode(data.content);
+                createdAt = data.createdAt;
+                setUid(data.uid);
+                setLoading(false);
+            })
+            .catch((err) => console.log(err));
+    }, [docRef]);
 
     return (
         <>
+            {loading && <Loading />}
             <div className="editor-wrapper">
                 <div className="headerTop">
-                    <FontAwesomeIcon icon={faChevronLeft} title="Go back" />
-                    <input
-                        type="text"
-                        value={visibleSnippetObj.title}
-                        onChange={(e) => {
-                            setVisibleSnippetObj("title", e.target.value);
+                    <FontAwesomeIcon
+                        icon={faChevronLeft}
+                        title="Go back"
+                        onClick={() => {
+                            navigate(-1);
                         }}
                     />
+                    <input
+                        type="text"
+                        value={title}
+                        disabled={user === null || user.uid !== uid}
+                        onChange={(e) => setTitle(e.target.value)}
+                    />
                 </div>
-                <p>
-                    Created On:{" "}
-                    {new Date(visibleSnippetObj.createdAt).toLocaleString()}
-                </p>
+                <p>Created On: {createdAt.toLocaleString()}</p>
                 <div className="editor">
                     <Editor
-                        value={visibleSnippetObj.content}
-                        onValueChange={(content) =>
-                            setVisibleSnippetObj("content", content)
-                        }
+                        disabled={user === null || user.uid !== uid}
+                        value={userCode}
+                        onValueChange={(e) => setUserCode(e.target.value)}
                         highlight={(userCode) =>
                             hljs.highlightAuto(userCode).value
                         }
@@ -45,21 +83,21 @@ export default function CodeEditor({
                         tabSize={4}
                     />
                 </div>
-                <div className="btns">
-                    <button
-                        type="button"
-                        className="cancel"
-                        onClick={() => {
-                            setVisibleSnippetObj("cancel", "");
-                        }}
-                    >
-                        Cancel Changes
-                    </button>
-                    <button type="button" className="save">
-                        Save Changes
-                    </button>
-                </div>
+                {user && <SaveBtns />}
             </div>
         </>
+    );
+}
+
+function SaveBtns() {
+    return (
+        <div className="btns">
+            <button type="button" className="cancel">
+                Cancel Changes
+            </button>
+            <button type="button" className="save">
+                Save Changes
+            </button>
+        </div>
     );
 }
