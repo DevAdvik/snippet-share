@@ -1,49 +1,97 @@
-.leftWrapper {
-    background-color: #cadbec;
+.snippetWrapper {
+    /* border: 1px solid; */
+    /* background-color: #121212; */
     min-height: 100vh;
-    padding: 20px 15px;
+    padding: 25px;
     display: flex;
     flex-direction: column;
+    /* flex-wrap: wrap; */
     gap: 10px;
     width: 100%;
+    max-width: 1200px;
+    align-self: center;
+    color: #008170;
+    font-family: 'Montserrat', sans-serif;
 }
 
-.addDiv {
-    margin-top: 10px;
-    padding: 20px;
-    background-color: #f6f6f6;
-    border-radius: 10px;
+.topHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.topHeader .reactIcons {
+    display: flex;
+    gap: 20px;
+    font-size: 1rem;
     transition: .2s;
-    max-width: 450px;
 
-    &:hover {
+    & svg {
         cursor: pointer;
-        background-color: #e8e7e7;
     }
 
-    &:active {
-        scale: 0.99;
+    & * {
+        aspect-ratio: 1;
+        border: 1px solid;
+        padding: 10px 10px;
+        border-radius: 50%;
+        transition: .1s;
+
+        &:hover {
+            background-color: rgba(0, 129, 112, 0.2);
+            scale: 1.03;
+        }
+
     }
+}
+
+
+.snippetList {
+    display: flex;
+    flex-wrap: wrap;
+    /* border: 1px solid; */
+    gap: 20px;
+    justify-content: center;
+    /* align-items: flex-start; */
 }
 
 .singleSnippet {
     width: 100%;
     padding: 10px;
-    background-color: #fbfbfb;
+    background-color: rgb(35 45 63/0.7);
     border-radius: 10px;
-    margin-top: 10px;
-    max-width: 450px;
+    max-width: 370px;
+    /* border: 1px solid; */
+    height: auto;
     cursor: pointer;
+    transition: .2s;
+
+    & h2 {
+        color: #e0e0e0;
+        cursor: text;
+    }
 
     & p {
         font-weight: 500;
         margin: 12px;
+        font-family: 'JetBrains Mono', monospace;
+        user-select: none;
     }
 
     & p:last-child {
-        font-weight: 400;
+        font-weight: 300;
         font-size: 0.9rem;
-        color: #2d2d2d;
+        color: #e0e0e0;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    &:hover {
+        background-color: rgb(35 45 63/0.5);
+    }
+
+    &:active {
+        scale: 0.99;
     }
 }
 

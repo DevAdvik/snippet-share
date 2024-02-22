@@ -1,33 +1,87 @@
-import SnippetList from "./Snippet";
+import Snippet from "./Snippet";
+import CodeEditor from "../CodeEditor";
 import "../styles/Wrapper.css";
 import { useEffect, useState } from "react";
-import { auth, firestore } from "../firebase";
-import { collection, getDocs, query, where } from "firebase/firestore";
+// import { auth, firestore } from "../firebase";
+import {
+    collection,
+    getDocs,
+    query,
+    where,
+    getFirestore,
+} from "firebase/firestore";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCICXjK4sqoHl21q3Dpu4tSzJQq_Kb3hbQ",
+    authDomain: "snippet-sphere.firebaseapp.com",
+    projectId: "snippet-sphere",
+    storageBucket: "snippet-sphere.appspot.com",
+    messagingSenderId: "721094457461",
+    appId: "1:721094457461:web:873fcdbc5c1c7c83a5a03c",
+    measurementId: "G-X82RLXX6DC",
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const firestore = getFirestore(app);
 
 export default function SnippetWrapper() {
     const [allSnippets, setAllSnippets] = useState([]);
-    const [visibleSnippet, setVisibleSnippet] = useState({});
-    const { uid } = auth.currentUser;
+    const [selectedSnippet, setSelectedSnippet] = useState({});
+    const [currentSnippetObj, setCurrentSnippetObj] = useState({});
+    const [user] = useAuthState(auth);
 
     useEffect(() => {
         document.title = "My Snippets: Snippet Sphere";
     }, []);
 
+    const showWhat = (data) => {
+        console.log(data);
+    };
+
+    const editSnippetObjFromEditor = (dataType, data) => {
+        console.log(dataType, data);
+    };
+
     useEffect(() => {
         async function fetchData() {
-            const response = await getSnippets(uid);
+            const response = await getSnippets(user.uid);
+            console.log(response);
             setAllSnippets(response);
-            setVisibleSnippet(response[0]);
         }
         fetchData();
-    }, []);
+    }, [user]);
+
+    useEffect(() => {
+        if (selectedSnippet == {}) {
+            console.log("I'm returning brother");
+            return;
+        }
+        const selectedSnippetObj = allSnippets.find((snippet) => {
+            return snippet.id === selectedSnippet;
+        });
+        setCurrentSnippetObj(selectedSnippetObj);
+    }, [selectedSnippet, allSnippets]);
 
     return (
         <>
-            <SnippetList
-                allSnippets={allSnippets}
-                showSnippet={visibleSnippet}
-            />
+            {selectedSnippet === {} ? (
+                <CodeEditor
+                    visibleSnippetObj={currentSnippetObj}
+                    setVisibleSnippetObj={editSnippetObjFromEditor}
+                />
+            ) : (
+                <Snippet
+                    allSnippets={allSnippets}
+                    showSnippet={(id) => {
+                        // setSelectedSnippet(id);
+                        console.log("Selected changed!", id);
+                    }}
+                />
+            )}
         </>
     );
 }

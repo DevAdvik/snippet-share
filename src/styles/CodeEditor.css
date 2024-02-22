@@ -8,11 +8,99 @@
     src: url('../assets/Fonts/JetBrainsMono-Regular.woff2');
 }
 
+.editor-wrapper {
+    max-width: 1200px;
+    align-self: center;
+    color: #e0e0e0;
+    font-family: 'Montserrat', sans-serif;
+    /* border: 1px solid; */
+    padding: 30px;
+    background-color: #1d2431;
+    height: 100vh;
+    width: 100vw;
+
+    .headerTop {
+        display: flex;
+        gap: 25px;
+        align-items: center;
+        width: 95%;
+    }
+
+    & input[type="text"] {
+        background-color: transparent;
+        border: none;
+        font-size: 2.25rem;
+        font-weight: 600;
+        font-family: 'Montserrat', sans-serif;
+        color: #e0e0e0;
+        outline: none;
+
+        &:focus {
+            border-bottom: 1px solid;
+        }
+    }
+
+    & svg {
+        width: max-content;
+        height: 1.1rem;
+        cursor: pointer;
+    }
+
+    & * {
+        width: 95%;
+        /* border: 1px solid; */
+    }
+
+    & p {
+        font-weight: 300;
+        margin: 10px 0px;
+    }
+}
+
 .editor {
-    max-width: 800px;
+    width: 95%;
+    margin-top: 25px;
     line-height: 1.4;
-    background-color: black;
+    border-radius: 5px;
+    background-color: #0F0F0F;
     font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 0.95rem;
     color: white;
+    border: 1px solid;
+}
+
+.btns {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    flex-wrap: wrap;
+
+    & button {
+        border: 1px solid;
+        outline: transparent;
+        padding: 10px 15px;
+        border-radius: 10px;
+        width: fit-content;
+        cursor: pointer;
+        transition: .1s;
+        color: #0F0F0F;
+
+        &:hover {
+            scale: 0.99;
+        }
+
+        &:active {
+            scale: 0.98;
+            opacity: 0.9;
+        }
+    }
+}
+
+button.cancel {
+    background-color: salmon;
+}
+
+button.save {
+    background-color: #008170;
 }
