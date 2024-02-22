@@ -38,31 +38,10 @@ export default function SnippetWrapper() {
         fetchData();
     }, [user]);
 
-    // useEffect(() => {
-    //     console.log(visibleSnippetRef.current);
-    //     if (visibleSnippetRef.current === "no-click") {
-    //         console.log("visible snippet still 'no-click'");
-    //         return;
-    //     }
-    //     const selectedSnippetObj = allSnippets.find((snippet) => {
-    //         return snippet.id === visibleSnippetRef.current;
-    //     });
-    //     setCurrentSnippetObj(selectedSnippetObj);
-
-    //     return () => {
-    //         setCurrentSnippetObj({});
-    //     };
-    // }, [allSnippets]);
-
     return (
         <>
             {loading && <Loading />}
-            <Snippet
-                allSnippets={allSnippets}
-                showSnippet={(id) => {
-                    console.log("Snippet clicked");
-                }}
-            />
+            <Snippet allSnippets={allSnippets} />
         </>
     );
 }
@@ -88,7 +67,9 @@ async function getSnippets(uid) {
 export function Loading() {
     return (
         <>
-            <div className="loadingIcon"></div>
+            <div className="loadingIcon">
+                <div className="loadingSpinner"></div>
+            </div>
         </>
     );
 }

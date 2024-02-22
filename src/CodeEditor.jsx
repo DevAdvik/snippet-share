@@ -16,15 +16,14 @@ import { useParams, useNavigate } from "react-router-dom";
 
 // import styled from "styled-components";
 
-let createdAt = new Date();
 export default function CodeEditor() {
     const navigate = useNavigate();
     const { snippetId } = useParams();
     const [title, setTitle] = useState("loading...");
     const [userCode, setUserCode] = useState("console.log('loading...')");
+    const [createdAt, setCreatedAt] = useState("");
     const [loading, setLoading] = useState(true);
     const [uid, setUid] = useState(0);
-    const [snippetObj, setSnippetObj] = useState({});
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const firestore = getFirestore(app);
@@ -40,16 +39,17 @@ export default function CodeEditor() {
                 return new Error("Snippet not found");
             }
         }
+        console.log("getting docref...");
         getSnippet(docRef)
             .then((data) => {
                 setTitle(data.title);
                 setUserCode(data.content);
-                createdAt = data.createdAt;
+                setCreatedAt(data.createdAt);
                 setUid(data.uid);
                 setLoading(false);
             })
             .catch((err) => console.log(err));
-    }, [docRef]);
+    }, []);
 
     return (
         <>
@@ -70,12 +70,13 @@ export default function CodeEditor() {
                         onChange={(e) => setTitle(e.target.value)}
                     />
                 </div>
-                <p>Created On: {createdAt.toLocaleString()}</p>
+                <p>Created On: {new Date(createdAt).toLocaleString()}</p>
+
                 <div className="editor">
                     <Editor
                         disabled={user === null || user.uid !== uid}
                         value={userCode}
-                        onValueChange={(e) => setUserCode(e.target.value)}
+                        onValueChange={(code) => setUserCode(code)}
                         highlight={(userCode) =>
                             hljs.highlightAuto(userCode).value
                         }
@@ -83,16 +84,22 @@ export default function CodeEditor() {
                         tabSize={4}
                     />
                 </div>
-                {user && <SaveBtns />}
+                {user && (
+                    <SaveBtns
+                        goBack={() => {
+                            navigate(-1);
+                        }}
+                    />
+                )}
             </div>
         </>
     );
 }
 
-function SaveBtns() {
+function SaveBtns({ goBack }) {
     return (
         <div className="btns">
-            <button type="button" className="cancel">
+            <button type="button" className="cancel" onClick={goBack}>
                 Cancel Changes
             </button>
             <button type="button" className="save">

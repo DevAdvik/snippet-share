@@ -17,7 +17,8 @@
     /* border: 1px solid; */
     padding: 30px;
     background-color: #1d2431;
-    height: 100vh;
+    min-height: 100vh;
+    padding-bottom: 40px;
     width: 100vw;
 
     .headerTop {
@@ -68,6 +69,10 @@
     font-size: 0.95rem;
     color: white;
     border: 1px solid;
+
+    & pre {
+        width: 100%;
+    }
 }
 
 .btns {

@@ -7,7 +7,7 @@ import {
 import "../styles/Snippet.css";
 import { Link } from "react-router-dom";
 
-export default function SnippetList({ allSnippets, showSnippet }) {
+export default function SnippetList({ allSnippets }) {
     return (
         <>
             <div className="snippetWrapper">
@@ -16,11 +16,7 @@ export default function SnippetList({ allSnippets, showSnippet }) {
                     {allSnippets.map((snippet) => {
                         return (
                             <Link to={snippet.id} key={snippet.id}>
-                                <div
-                                    className="singleSnippet"
-                                    key={snippet.id}
-                                    onClick={() => showSnippet(snippet.id)}
-                                >
+                                <div className="singleSnippet" key={snippet.id}>
                                     <h2 className="limit-lines limit2">
                                         {snippet.title}
                                     </h2>
