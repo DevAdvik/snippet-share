@@ -8,6 +8,7 @@ import Login from "./components/login.jsx";
 import SnippetWrapper from "./components/Wrapper.jsx";
 import CodeEditor from "./components/CodeEditor.jsx";
 import AddSnippet from "./components/AddSnippet.jsx";
+import ErrorPage from "./components/ErrorPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -29,10 +30,15 @@ const router = createBrowserRouter([
     {
         path: "/snippets/:snippetId",
         element: <CodeEditor />,
+        errorElement: <ErrorPage />,
     },
     {
         path: "/newSnippet",
         element: <AddSnippet />,
+    },
+    {
+        path: "*",
+        element: <ErrorPage />,
     },
 ]);
 

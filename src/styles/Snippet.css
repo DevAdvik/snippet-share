@@ -69,6 +69,8 @@
     transition: .2s;
 
     & h2 {
+        padding: 10px;
+        padding-bottom: 0;
         color: #e0e0e0;
     }
 
