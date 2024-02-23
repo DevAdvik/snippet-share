@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import firebaseConfig from "../firebase";
 import {
     collection,
-    doc,
     getDocs,
     query,
     where,

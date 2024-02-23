@@ -1,12 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CodeInput from "./CodeEditor.jsx";
+import CodeInput from "./components/CodeEditor.jsx";
 // import "./styles/index.css";
 import Homepage from "./Home.jsx";
 import Login from "./components/login.jsx";
 import SnippetWrapper from "./components/Wrapper.jsx";
-import CodeEditor from "./CodeEditor.jsx";
+import CodeEditor from "./components/CodeEditor.jsx";
+import AddSnippet from "./components/AddSnippet.jsx";
 
 const router = createBrowserRouter([
     {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
     {
         path: "/snippets/:snippetId",
         element: <CodeEditor />,
+    },
+    {
+        path: "/newSnippet",
+        element: <AddSnippet />,
     },
 ]);
 

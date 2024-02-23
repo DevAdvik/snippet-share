@@ -1,8 +1,8 @@
-import hljs from "./requiredHighlights";
-import "./styles/CodeEditor.css";
+import hljs from "../requiredHighlights";
+import "../styles/CodeEditor.css";
 import "highlight.js/styles/base16/material-darker.css";
-import firebaseConfig from "./firebase";
-import { Loading } from "./components/Wrapper";
+import firebaseConfig from "../firebase";
+import { Loading } from "./Wrapper";
 
 import Editor from "react-simple-code-editor";
 import { useEffect, useState } from "react";
@@ -43,7 +43,9 @@ export default function CodeEditor() {
             .then((data) => {
                 setTitle(data.title);
                 setUserCode(data.content);
-                const date = data.createdAt.seconds * 1000 + Math.floor(data.createdAt.nanoseconds / 1000000);
+                const date =
+                    data.createdAt.seconds * 1000 +
+                    Math.floor(data.createdAt.nanoseconds / 1000000);
                 setCreatedAt(new Date(date).toLocaleString());
                 setUid(data.uid);
                 setLoading(false);
