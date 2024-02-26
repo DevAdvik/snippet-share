@@ -1,4 +1,4 @@
-import firebaseConfig from "./firebase";
+import firebaseConfig from "../firebase";
 import {
     GoogleAuthProvider,
     createUserWithEmailAndPassword,
@@ -24,7 +24,11 @@ export function SignInWithGoogle() {
             addToUsersCollection(user);
         });
     };
-    return <button className="googleBtn" onClick={signInWithGoogle}>Sign In With Google</button>;
+    return (
+        <button className="googleBtn" onClick={signInWithGoogle}>
+            Sign In With Google
+        </button>
+    );
 }
 
 export function SignInWithEmail() {
@@ -36,7 +40,11 @@ export function SignInWithEmail() {
             }
         );
     };
-    return <button type="button" onClick={signInWithEmail}>Log In</button>;
+    return (
+        <button type="button" onClick={signInWithEmail}>
+            Log In
+        </button>
+    );
 }
 
 export function SignUpWithEmail() {
@@ -48,7 +56,11 @@ export function SignUpWithEmail() {
             }
         );
     };
-    return <button type="button" onClick={signUpWithEmail}>Sign Up</button>
+    return (
+        <button type="button" onClick={signUpWithEmail}>
+            Sign Up
+        </button>
+    );
 }
 
 const app = initializeApp(firebaseConfig);

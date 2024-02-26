@@ -1,3 +1,5 @@
+import { SignInWithGoogle } from "./Auth";
+
 function Login() {
     return (
         <>
@@ -7,8 +9,9 @@ function Login() {
             <label htmlFor="password">Password:</label>
             <input type="text" placeholder="Strongpassword123" id="password" />
             <button>Login</button>
+            <SignInWithGoogle />
         </>
-    )
+    );
 }
 
 export default Login;
