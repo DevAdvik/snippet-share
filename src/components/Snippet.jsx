@@ -10,6 +10,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
+import Tilt from "react-parallax-tilt";
 import firebaseConfig from "../firebase";
 import Login from "./login";
 
@@ -31,25 +32,36 @@ export default function SnippetList({ allSnippets }) {
                     <div className="snippetList">
                         {allSnippets.map((snippet) => {
                             return (
-                                <Link to={snippet.id} key={snippet.id}>
-                                    <div
-                                        className="singleSnippet"
-                                        key={snippet.id}
-                                    >
-                                        <h2 className="limit-lines limit2">
-                                            {snippet.title}
-                                        </h2>
-                                        <p className="limit-lines limit3">
-                                            {snippet.content}
-                                        </p>
-                                        <p>
-                                            Created on:{" "}
-                                            {new Date(
-                                                snippet.createdAt
-                                            ).toLocaleString()}
-                                        </p>
-                                    </div>
-                                </Link>
+                                <Tilt
+                                    key={snippet.id}
+                                    className="parallax-tilt"
+                                    glareEnable={true}
+                                    glareMaxOpacity={0.4}
+                                    glareBorderRadius="10px"
+                                    tiltMaxAngleX={10}
+                                    tiltMaxAngleY={5}
+                                    glareColor="lightblue"
+                                >
+                                    <Link to={snippet.id} key={snippet.id}>
+                                        <div
+                                            className="singleSnippet"
+                                            key={snippet.id}
+                                        >
+                                            <h2 className="limit-lines limit2">
+                                                {snippet.title}
+                                            </h2>
+                                            <p className="limit-lines limit3">
+                                                {snippet.content}
+                                            </p>
+                                            <p>
+                                                Created on:{" "}
+                                                {new Date(
+                                                    snippet.createdAt
+                                                ).toLocaleString()}
+                                            </p>
+                                        </div>
+                                    </Link>
+                                </Tilt>
                             );
                         })}
                     </div>
@@ -68,7 +80,7 @@ function Header({ addSnippet }) {
     return (
         <>
             <div className="topHeader">
-                <h1>Snippet Sphere</h1>
+                <h1 title="World of Snippets!">Snippet Sphere</h1>
                 <div className="reactIcons">
                     <FontAwesomeIcon
                         icon={faMagnifyingGlass}

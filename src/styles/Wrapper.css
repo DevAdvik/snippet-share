@@ -15,15 +15,16 @@ html {
     left: 0;
     right: 0;
     bottom: 0;
-    opacity: 0.5;
-    background-color: black;
+    opacity: 0.6;
+    background-color: rgb(4, 13, 69);
 }
 
 .loadingSpinner {
     position: absolute;
-    transform: translate(-50%, -50%);
     top: 50%;
     left: 50%;
+    transform: translate(-50%, -50%) rotate(0deg);
+    /* I spent so much time to fix this animation, since there were 2 properties and I didn't added the rotate one here */
     width: 80px;
     height: 80px;
     border: 8px solid;
@@ -34,10 +35,10 @@ html {
 
 @keyframes loading {
     0% {
-        transform: rotate(0deg);
+        transform: translate(-50%, -50%) rotate(0deg);
     }
 
     100% {
-        transform: rotate(360deg);
+        transform: translate(-50%, -50%) rotate(360deg);
     }
 }

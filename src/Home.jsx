@@ -1,10 +1,14 @@
 function Homepage() {
     return (
-        <>
-            <h1>Home page or something</h1>
-            <button type="button">Login</button>
-            <button type="button">Signup</button>
-        </>
+        <h1
+            style={{
+                color: "white",
+                textAlign: "center",
+                marginTop: "80px",
+            }}
+        >
+            Really good Home page or something
+        </h1>
     );
 }
 

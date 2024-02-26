@@ -66,8 +66,9 @@
     background-color: #0F0F0F;
     font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 0.95rem;
+    padding: 10px;
     color: white;
-    border: .5px solid #e0e0e0;
+    /* border: .5px solid #e0e0e0; */
 
     & pre {
         width: 100%;
