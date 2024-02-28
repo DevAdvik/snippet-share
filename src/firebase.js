@@ -1,6 +1,6 @@
 const firebaseConfig = {
     apiKey: "AIzaSyCICXjK4sqoHl21q3Dpu4tSzJQq_Kb3hbQ",
-    authDomain: "snippet-sphere.firebaseapp.com",
+    // authDomain: "snippet-sphere.firebaseapp.com",
     projectId: "snippet-sphere",
     storageBucket: "snippet-sphere.appspot.com",
     messagingSenderId: "721094457461",
