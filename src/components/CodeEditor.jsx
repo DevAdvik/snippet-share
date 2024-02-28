@@ -14,8 +14,6 @@ import { getAuth } from "firebase/auth";
 import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 
-// import styled from "styled-components";
-
 export default function CodeEditor() {
     const navigate = useNavigate();
     const { snippetId } = useParams();

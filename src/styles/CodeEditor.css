@@ -63,7 +63,7 @@
     margin-top: 25px;
     line-height: 1.4;
     border-radius: 5px;
-    background-color: #0F0F0F;
+    background-color: rgb(3, 7, 36);
     font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 0.95rem;
     padding: 10px;
@@ -83,7 +83,7 @@
     flex-wrap: wrap;
 
     & button {
-        border: 1px solid;
+        border: none;
         outline: transparent;
         padding: 10px 15px;
         border-radius: 10px;
@@ -104,9 +104,10 @@
 }
 
 button.cancel {
-    background-color: salmon;
+    background-color: rgb(225, 113, 47);
 }
 
 button.save {
-    background-color: #008170;
+    background-color: rgb(33, 179, 220);
+    border: 1px solid;
 }
