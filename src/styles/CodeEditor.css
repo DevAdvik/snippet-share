@@ -39,7 +39,6 @@
 
     & * {
         width: 95%;
-        /* border: 1px solid; */
     }
 
     & p {
@@ -49,6 +48,7 @@
 }
 
 .editor {
+    position: relative;
     width: 95%;
     margin-top: 25px;
     line-height: 1.4;
@@ -58,11 +58,20 @@
     font-size: 0.95rem;
     padding: 10px;
     color: white;
-    /* border: .5px solid #e0e0e0; */
 
     & pre {
         width: 100%;
     }
+}
+
+textarea {
+    outline: transparent;
+}
+
+.copyIcon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 
 .btns {
@@ -100,5 +109,4 @@ button.cancel {
 button.save {
     background-color: rgb(32, 178, 170);
     color: #0F0F0F;
-    /* border: 1px solid; */
 }

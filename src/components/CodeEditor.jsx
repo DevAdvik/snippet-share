@@ -7,7 +7,11 @@ import { Loading } from "./Wrapper";
 import Editor from "react-simple-code-editor";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import {
+    faCheck,
+    faChevronLeft,
+    faCopy,
+} from "@fortawesome/free-solid-svg-icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -22,6 +26,7 @@ export default function CodeEditor() {
     const [createdAt, setCreatedAt] = useState("");
     const [loading, setLoading] = useState(true);
     const [uid, setUid] = useState(0);
+    const [copyIcon, setCopyIcon] = useState(faCopy);
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const firestore = getFirestore(app);
@@ -80,6 +85,18 @@ export default function CodeEditor() {
                 <p>Created On: {createdAt}</p>
 
                 <div className="editor">
+                    <FontAwesomeIcon
+                        icon={copyIcon}
+                        className="copyIcon"
+                        title="Copy snippet to clipboard"
+                        onClick={() => {
+                            navigator.clipboard.writeText(userCode);
+                            setCopyIcon(faCheck);
+                            setTimeout(() => {
+                                setCopyIcon(faCopy);
+                            }, 1500);
+                        }}
+                    />
                     <Editor
                         disabled={user === null || user.uid !== uid}
                         value={userCode}
