@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'SourceCodePro';
+    src: url('../assets/Fonts/SourceCodePro-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    src: url('../assets/Fonts/JetBrainsMono-Regular.woff2');
+}
+
 .snippetWrapper {
     /* border: 1px solid; */
     min-height: 100vh;
@@ -12,11 +22,19 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+
 .topHeader {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 25px;
+    gap: 5px;
+
+    & h1 {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
 }
 
 .topHeader .reactIcons {
@@ -29,7 +47,7 @@
         cursor: pointer;
     }
 
-    & * {
+    & > * {
         aspect-ratio: 1;
         border: 1px solid;
         padding: 10px 10px;
@@ -41,13 +59,17 @@
             scale: 1.03;
         }
     }
+
+    .searchBar {
+        position: relative;
+    }
 }
 
 
 .snippetList {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 25px;
     justify-content: center;
 
     & a {
@@ -68,21 +90,29 @@
     flex-direction: column;
     align-items: center;
     width: 31%;
+    min-width: 130px;
+    max-height: 400px;
 
     & a {
         height: 100%;
+        max-height: 400px;
     }
 }
 
 .singleSnippet {
     padding: 10px;
-    background-color: rgba(4, 13, 69, 0.3);
+    background-color: transparent;
     border-radius: 10px;
-    /* border: 1px solid rgba(4, 13, 69, 0.3); */
+    position: relative;
+    border: 1px solid rgba(4, 13, 69, 0.3);
     height: 100%;
-    flex-grow: 1;
+    min-width: 130px;
+    max-height: 400px;
     cursor: pointer;
     transition: .2s;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 
     & h2 {
         padding: 10px;
@@ -101,7 +131,7 @@
         font-weight: 300;
         font-size: 0.9rem;
         color: #e0e0e0;
-        font-family: 'Source Sans Pro', sans-serif;
+        font-family: 'SourceCodePro', 'Montserrat', sans-serif;
     }
 
     &:hover {
@@ -113,10 +143,19 @@
     }
 }
 
-.activeSnippet {
-    background-color: #e0e0e0;
+.singleSnippet::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    backdrop-filter: blur(8px);
+    background-color: rgba(4, 13, 69, 0.15);
+    border-radius: 10px;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.082);
 }
-
 
 .limit-lines {
     overflow: hidden;
@@ -131,4 +170,21 @@
 
 .limit2 {
     -webkit-line-clamp: 2;
+}
+
+
+@media screen and (max-width: 600px) {
+    .parallax-tilt {
+        width: 100%;
+    }
+
+    .snippetList {
+        & a {
+            color: rgb(117, 225, 255);
+        }
+    }
+
+    .topHeader .reactIcons {
+        gap: 10px;
+    }
 }

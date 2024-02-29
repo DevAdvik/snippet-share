@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import "./styles/index.css";
 import Homepage from "./Home.jsx";
 import Login from "./components/login.jsx";
 import SnippetWrapper from "./components/Wrapper.jsx";

@@ -11,7 +11,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
+import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
 
 export default function CodeEditor() {
@@ -51,6 +51,13 @@ export default function CodeEditor() {
             .catch((err) => console.log(err));
     }, []);
 
+    async function updateSnippet() {
+        await updateDoc(doc(firestore, "snippets", snippetId), {
+            title: title,
+            content: userCode,
+        }).then(setLoading(false));
+    }
+
     return (
         <>
             {loading && <Loading />}
@@ -86,6 +93,10 @@ export default function CodeEditor() {
                 </div>
                 {user && (
                     <SaveBtns
+                        setSnippet={() => {
+                            setLoading(true);
+                            updateSnippet();
+                        }}
                         goBack={() => {
                             navigate(-1);
                         }}
@@ -96,13 +107,13 @@ export default function CodeEditor() {
     );
 }
 
-function SaveBtns({ goBack }) {
+function SaveBtns({ goBack, setSnippet }) {
     return (
         <div className="btns">
             <button type="button" className="cancel" onClick={goBack}>
                 Cancel Changes
             </button>
-            <button type="button" className="save">
+            <button type="button" className="save" onClick={setSnippet}>
                 Save Changes
             </button>
         </div>

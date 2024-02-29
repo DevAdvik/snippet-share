@@ -5,6 +5,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Snippet.css";
+import logo from "../assets/SnippetSphere-black.png";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
@@ -18,6 +19,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function SnippetList({ allSnippets }) {
+    console.log(allSnippets);
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     if (!user) {
@@ -39,7 +41,7 @@ export default function SnippetList({ allSnippets }) {
                                     glareMaxOpacity={0.4}
                                     glareBorderRadius="10px"
                                     tiltMaxAngleX={10}
-                                    tiltMaxAngleY={5}
+                                    tiltMaxAngleY={10}
                                     glareColor="lightblue"
                                 >
                                     <Link to={snippet.id} key={snippet.id}>
@@ -80,12 +82,18 @@ function Header({ addSnippet }) {
     return (
         <>
             <div className="topHeader">
-                <h1 title="World of Snippets!">Snippet Sphere</h1>
+                <h1 title="Sharing Brilliance, One Snippet at a time!">
+                    <img src={logo} alt="Logo " width="50px" />
+                    Snippet Sphere
+                </h1>
                 <div className="reactIcons">
-                    <FontAwesomeIcon
-                        icon={faMagnifyingGlass}
-                        title="Search Snippets"
-                    />
+                    <div className="searchBar">
+                        <FontAwesomeIcon
+                            icon={faMagnifyingGlass}
+                            title="Search Snippets"
+                            className="searchIcon"
+                        />
+                    </div>
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
