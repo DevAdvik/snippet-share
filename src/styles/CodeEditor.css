@@ -39,6 +39,7 @@
 
     & * {
         width: 95%;
+        z-index: 10;
     }
 
     & p {
@@ -66,6 +67,21 @@
 
 textarea {
     outline: transparent;
+}
+
+.togglePublic {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+
+    & * {
+        width: fit-content;
+    }
+
+    & input {
+        accent-color: #38DAD8;
+        cursor: pointer;
+    }
 }
 
 .copyIcon {
@@ -103,7 +119,7 @@ textarea {
 }
 
 button.cancel {
-    background-color: rgb(150, 0, 24);
+    background-color: #D3080D;
 }
 
 button.save {

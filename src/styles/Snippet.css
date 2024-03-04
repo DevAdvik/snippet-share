@@ -18,8 +18,12 @@
     width: 100%;
     max-width: 1200px;
     margin: auto;
-    color: rgb(4, 13, 69);
+    color: #38DAD8;
     font-family: 'Montserrat', sans-serif;
+}
+
+.snippetWrapper * {
+    z-index: 10;
 }
 
 
@@ -47,24 +51,103 @@
         cursor: pointer;
     }
 
-    & > * {
-        aspect-ratio: 1;
+    &>*:not(.search-box) {
         border: 1px solid;
         padding: 10px 10px;
         border-radius: 50%;
         transition: .1s;
 
         &:hover {
-            background-color: rgba(64, 212, 254, 0.9);
+            background-color: rgba(56, 218, 216, 0.3);
             scale: 1.03;
         }
     }
 
-    .searchBar {
+    .search-box {
+        font-size: 1rem;
+        border: none;
+        width: fit-content;
+        height: fit-content;
+        text-align: center;
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
         position: relative;
+        cursor: pointer;
+    }
+
+    .btn-search {
+        border: none;
+        position: absolute;
+        right: 0;
+        color: rgba(56, 218, 216);
+        padding: 10px;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        background-color: transparent;
+        outline: none;
+        cursor: pointer;
+
+        &:hover {
+            background-color: rgba(56, 218, 216, 0.3);
+            scale: 1.03;
+        }
+    }
+
+}
+
+.btn-search:focus~.input-search {
+    width: 300px;
+
+    background-color: transparent;
+    border-radius: 0;
+    padding: 10px;
+    border-color: transparent;
+    border-bottom: 1px solid rgba(56, 218, 216, 0.7);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+
+}
+
+.input-search:focus {
+    border-color: transparent;
+    width: 300px;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 0;
+    border-bottom: 1px solid rgba(56, 218, 216, 0.7);
+    transition: all 500ms cubic-bezier(0, 0.110, 0.35, 2);
+}
+
+.btn-search:focus {
+    border: none !important;
+    /* width: 350px; */
+}
+
+.input-search {
+    width: 40px;
+    height: 40px;
+    padding-right: 40px;
+    background-color: transparent;
+    border-radius: 50%;
+    border-style: none;
+    color: rgba(56, 218, 216, 0.7);
+    border: 1px solid rgba(56, 218, 216);
+    outline: none;
+    transition: .2s;
+    cursor: pointer;
+
+    &:hover {
+        /* background-color: rgba(56, 218, 216, 0.3); */
+        scale: 1.03;
     }
 }
 
+.input-search::placeholder {
+    color: rgba(56, 218, 216, 0.3);
+}
 
 .snippetList {
     display: flex;
@@ -74,13 +157,13 @@
 
     & a {
         text-decoration: none;
-        color: rgb(4, 13, 69);
+        color: rgba(224, 224, 224, 0.8);
         max-width: 370px;
         width: 100%;
         transition: .2s;
 
         &:hover {
-            color: rgb(64, 212, 254);
+            color: rgba(56, 218, 216, 0.7);
         }
     }
 }
@@ -104,7 +187,7 @@
     background-color: transparent;
     border-radius: 10px;
     position: relative;
-    border: 1px solid rgba(4, 13, 69, 0.3);
+    /* border: 1px solid rgba(56, 218, 216, 0.3); */
     height: 100%;
     min-width: 130px;
     max-height: 400px;
@@ -135,7 +218,7 @@
     }
 
     &:hover {
-        background-color: rgba(4, 13, 69, 0.6);
+        background-color: rgba(0, 0, 0, 0.82);
     }
 
     &:active {
@@ -152,9 +235,18 @@
     height: 100%;
     z-index: -1;
     backdrop-filter: blur(8px);
-    background-color: rgba(4, 13, 69, 0.15);
+    background-color: rgba(56, 218, 216, 0.1);
     border-radius: 10px;
-    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.082);
+    transition: .3s;
+    -webkit-box-shadow: 0px 0px 2px 0px rgba(56, 218, 215, 0.9);
+    -moz-box-shadow: 0px 0px 2px 0px rgba(56, 218, 215, 0.9);
+    box-shadow: 0px 0px 2px 0px rgba(56, 218, 215, 0.9);
+}
+
+.singleSnippet:hover::after {
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(56, 218, 215, 0.89);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(56, 218, 215, 0.89);
+    box-shadow: 0px 0px 10px 0px rgba(56, 218, 215, 0.89);
 }
 
 .limit-lines {
@@ -176,12 +268,6 @@
 @media screen and (max-width: 600px) {
     .parallax-tilt {
         width: 100%;
-    }
-
-    .snippetList {
-        & a {
-            color: rgb(117, 225, 255);
-        }
     }
 
     .topHeader .reactIcons {

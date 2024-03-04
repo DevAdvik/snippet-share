@@ -5,7 +5,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Snippet.css";
-import logo from "../assets/SnippetSphere-black.png";
+import logo from "../assets/SnippetSphere-white.png";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
@@ -87,17 +87,31 @@ function Header({ addSnippet }) {
                     Snippet Sphere
                 </h1>
                 <div className="reactIcons">
-                    <div className="searchBar">
-                        <FontAwesomeIcon
-                            icon={faMagnifyingGlass}
-                            title="Search Snippets"
-                            className="searchIcon"
-                        />
-                    </div>
+                    <Search />
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
             </div>
         </>
+    );
+}
+
+function Search() {
+    return (
+        <div className="search-box">
+            <button className="btn-search" tabIndex={1}>
+                <FontAwesomeIcon
+                    icon={faMagnifyingGlass}
+                    title="Search Snippets"
+                    className="searchIcon"
+                />
+            </button>
+            <input
+                type="text"
+                name="search"
+                className="input-search"
+                placeholder="Search snippets"
+            />
+        </div>
     );
 }

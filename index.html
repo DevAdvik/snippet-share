@@ -17,22 +17,40 @@
         />
 
         <style>
-            body {
-                /* background-color: #15191d; */
-                background: conic-gradient(
-                    from 90deg,
-                    rgb(4, 13, 69),
-                    rgb(5, 91, 191),
-                    rgb(65, 214, 255)
-                );
+            * {
+                padding: 0;
+                margin: 0;
+            }
+
+            #root {
+                position: relative;
+                min-height: 100vh;
+                width: 100vw;
+                background-color: #051515;
+                /* background: url("/src/assets/03.jpg"); */
+                background-position: center;
+                background-size: cover;
+                background-repeat: no-repeat;
+
                 color: #e0e0e0;
                 background-attachment: fixed;
+            }
+
+            .blur {
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                backdrop-filter: blur(40px);
+                z-index: 0;
             }
         </style>
     </head>
 
     <body>
         <div id="root"></div>
+        <!-- <div class="blur"></div> -->
         <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>

@@ -16,10 +16,12 @@ html {
     right: 0;
     bottom: 0;
     opacity: 0.6;
-    background-color: rgb(4, 13, 69);
+    background-color: #051515;
+    z-index: 10;
 }
 
 .loadingSpinner {
+    z-index: 10;
     position: absolute;
     top: 50%;
     left: 50%;
