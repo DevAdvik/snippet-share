@@ -20,8 +20,6 @@ const firestore = getFirestore(app);
 export default function SnippetWrapper() {
     const [user] = useAuthState(auth);
     const [allSnippets, setAllSnippets] = useState([]);
-    const [currentSnippets, setCurrentSnippets] = useState([]);
-    const [userSearch, setUserSearch] = useState("");
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -33,29 +31,16 @@ export default function SnippetWrapper() {
             if (user) {
                 const response = await getSnippets(user.uid);
                 setAllSnippets(response);
-                setCurrentSnippets(response);
                 setLoading(false);
             }
         }
         fetchData();
     }, [user]);
 
-    useEffect(() => {
-        if (!allSnippets.length) {
-            return;
-        }
-        const filtered = allSnippets.filter((snippet) => {
-            return (snippet.title.toLowerCase().includes(userSearch.toLowerCase()) ||
-                snippet.content.toLowerCase().includes(userSearch.toLowerCase()));
-        });
-        setCurrentSnippets(filtered);
-
-    }, [userSearch]);
-
     return (
         <>
             {loading && <Loading />}
-            <Snippet allSnippets={currentSnippets} searchValue={userSearch} setSearchValue={setUserSearch} />
+            <Snippet allSnippets={allSnippets} />
         </>
     );
 }
@@ -77,8 +62,6 @@ async function getSnippets(uid) {
     });
     return dummyArray;
 }
-
-
 
 export function Loading() {
     return (

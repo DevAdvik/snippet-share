@@ -18,7 +18,7 @@ import Login from "./login";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export default function SnippetList({ allSnippets, searchValue, setSearchValue }) {
+export default function SnippetList({ allSnippets }) {
     console.log(allSnippets);
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
         <>
             {user ? (
                 <div className="snippetWrapper">
-                    <Header addSnippet={12} searchValue={searchValue} setSearchValue={setSearchValue}/>
+                    <Header addSnippet={12} />
                     <div className="snippetList">
                         {allSnippets.map((snippet) => {
                             return (
@@ -75,7 +75,7 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
     );
 }
 
-function Header({ addSnippet, searchValue, setSearchValue }) {
+function Header({ addSnippet }) {
     if (!addSnippet) {
         return <h1>My Snippets V2.</h1>;
     }
@@ -87,7 +87,7 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
                     Snippet Sphere
                 </h1>
                 <div className="reactIcons">
-                    <Search searchValue={searchValue} setSearchValue={setSearchValue}/>
+                    <Search />
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
@@ -96,10 +96,7 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
     );
 }
 
-function Search({searchValue, setSearchValue}) {
-    const handleUserInput = (ev)=>{
-        setSearchValue(ev.target.value);
-    }
+function Search() {
     return (
         <div className="search-box">
             <button className="btn-search" tabIndex={1}>
@@ -114,8 +111,6 @@ function Search({searchValue, setSearchValue}) {
                 name="search"
                 className="input-search"
                 placeholder="Search snippets"
-                value={searchValue}
-                onChange={handleUserInput}
             />
         </div>
     );
