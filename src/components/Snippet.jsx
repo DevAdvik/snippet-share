@@ -18,7 +18,7 @@ import Login from "./login";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export default function SnippetList({ allSnippets }) {
+export default function SnippetList({ allSnippets, searchValue, setSearchValue }) {
     console.log(allSnippets);
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function SnippetList({ allSnippets }) {
         <>
             {user ? (
                 <div className="snippetWrapper">
-                    <Header addSnippet={12} />
+                    <Header addSnippet={12} searchValue={searchValue} setSearchValue={setSearchValue}/>
                     <div className="snippetList">
                         {allSnippets.map((snippet) => {
                             return (
@@ -75,7 +75,7 @@ export default function SnippetList({ allSnippets }) {
     );
 }
 
-function Header({ addSnippet }) {
+function Header({ addSnippet, searchValue, setSearchValue }) {
     if (!addSnippet) {
         return <h1>My Snippets V2.</h1>;
     }
@@ -87,7 +87,7 @@ function Header({ addSnippet }) {
                     Snippet Sphere
                 </h1>
                 <div className="reactIcons">
-                    <Search />
+                    <Search searchValue={searchValue} setSearchValue={setSearchValue}/>
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
@@ -96,7 +96,10 @@ function Header({ addSnippet }) {
     );
 }
 
-function Search() {
+function Search({searchValue, setSearchValue}) {
+    const handleUserInput = (ev)=>{
+        setSearchValue(ev.target.value);
+    }
     return (
         <div className="search-box">
             <button className="btn-search" tabIndex={1}>
@@ -111,6 +114,8 @@ function Search() {
                 name="search"
                 className="input-search"
                 placeholder="Search snippets"
+                value={searchValue}
+                onChange={handleUserInput}
             />
         </div>
     );
