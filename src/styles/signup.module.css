@@ -1,217 +1,257 @@
-
-*{
-    padding:0;
-    margin:0;
+* {
+    padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
-.snippet-share-signup-page{
-    width:100%;
-    height:100vh;
-    background-color: rgba(11,11,11,255);
+
+.snippet-share-signup-page {
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(11, 11, 11, 255);
     display: flex;
     justify-content: center;
     align-items: center;
-    color:#f3f3f3;
+    color: #f3f3f3;
     font-family: 'Montserrat', sans-serif;
-}  
-.snippet-share-signup-page-container{
-    width:85%;
-    height:85%;
-    display:flex;
 }
-.signup-email-password-content{
-   width:50%;
-   height:100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-}
-.signup-image-add-content{
-    width:50%;
-   height:100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
-   & .quetes{
-    width:100%;
-    height:10%;
-    font-size: 1.5rem;
-    font-weight: 300;
+
+.snippet-share-signup-page-container {
+    width: 85%;
+    height: 85%;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-left: 70px;
-   }
-   & .signup-image-add-content-inner-alignment-div{
-    width:80%;
+}
+
+.signup-email-password-content {
+    width: 50%;
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-    & .image-div{
+    justify-content: center;
+}
+
+.signup-image-add-content {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    & .quetes {
         width: 100%;
-        height:95%;
+        height: 10%;
+        font-size: 1.5rem;
+        font-weight: 300;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 70px;
+    }
+
+    & .signup-image-add-content-inner-alignment-div {
+        width: 80%;
+        height: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: flex-end;
-        & img{
-            width: 100%;
-            max-width:550px;
-            max-height: 550px;
-            aspect-ratio: 1;
-           }
-    }
-   
-       & .contact-us{
-        width:90%;
-        height:15%;
-        font-size: 1.2rem;
-        color:#838383;
-        display: flex;
-        margin-top: 3rem;
-        justify-content: flex-end;
-        flex-direction: column;
 
-        & div{
+        & .image-div {
+            width: 100%;
+            height: 95%;
             display: flex;
-            justify-content: flex-end;
+            flex-direction: column;
             align-items: center;
-            & span{
-                color:#f5d969;
-            }
-            & i{
-                margin-inline: 0.5rem;
+            justify-content: flex-end;
+
+            & img {
+                width: 100%;
+                max-width: 550px;
+                max-height: 550px;
+                aspect-ratio: 1;
             }
         }
-       }
 
-   }
+        & .contact-us {
+            width: 90%;
+            height: 15%;
+            font-size: 1.2rem;
+            color: #838383;
+            display: flex;
+            margin-top: 3rem;
+            justify-content: flex-end;
+            flex-direction: column;
+
+            & div {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+
+                & span {
+                    color: #f5d969;
+                }
+
+                & i {
+                    margin-inline: 0.5rem;
+                }
+            }
+        }
+
+    }
 
 }
 
-.signup-email-password-content-inside-alignment-div{
-    width:80%;
-    height:100%;
-    .logo-and-image{
-      width:100%;
-      display: flex;
-      align-items: center;
-      .logo-image{
-        width:100px;
-        height:80px;
-      }
-      & p{
-        font-weight: 600;
-        font-size: 2.5rem;
+.signup-email-password-content-inside-alignment-div {
+    width: 80%;
+    height: 100%;
+
+    .logo-and-image {
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        .logo-image {
+            width: 100px;
+            height: 80px;
+        }
+
+        & p {
+            font-weight: 600;
+            font-size: 2.5rem;
+            margin-left: 1rem;
+        }
+    }
+
+    .Welcome-back-description {
+        font-size: 1.8rem;
+        font-weight: 500;
+        margin-top: 4rem;
         margin-left: 1rem;
-      }
+
+        & p {
+            font-size: 1.2rem;
+            margin-top: 0.3rem;
+            font-weight: 300;
+        }
     }
-    .Welcome-back-description{
-      font-size:1.8rem;
-      font-weight: 500;
-      margin-top:4rem;
-      margin-left: 1rem;
-      & p{
-        font-size: 1.2rem;
-        margin-top:0.3rem;
-        font-weight: 300;
-      }   
-    }
-    .email-password-signup-button{
-        width:100%;
-        height:60%;
+
+    .email-password-signup-button {
+        width: 100%;
+        height: 60%;
         margin-top: 2.5rem;
         font-size: 1.2rem;
         font-size: 400;
         padding-left: 1rem;
-        & input{
+
+        & input {
             font-size: 1.3rem;
             border-radius: 5px;
-            width:80%;
-            height:60px;
-            margin-top:1rem;
-            padding:1rem;
+            width: 80%;
+            height: 60px;
+            margin-top: 1rem;
+            padding: 1rem;
             background-color: #222222;
             outline: transparent;
             border: none;
-            color:white;
+            color: white;
         }
-        .password-input-div{
+
+        .password-input-div {
             margin-top: 1.5rem;
-            & div{
-                width:80%;
+
+            & div {
+                width: 80%;
                 margin-top: 0.5rem;
                 display: flex;
                 justify-content: flex-end;
                 font-size: 1.2rem;
             }
         }
-        .email-input-div,.username-input-div{
+
+        .email-input-div,
+        .username-input-div {
             margin-top: 1.5rem;
         }
-        .signup-button{
-            width:80%;
-            height:60px;
+
+        .signup-button {
+            width: 80%;
+            height: 60px;
             background-color: #f5d969;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            border: 1px solid #f5d969;
+            border-radius: 4px;
+            box-shadow: #8a7523 4px 4px 0 0, #f5d969 4px 4px 0 1px;
+            box-sizing: border-box;
+            color: #222222;
+            cursor: pointer;
+            font-family: 'JetBrains Mono';
             font-size: 1.2rem;
-            margin-top:2rem;
-            border-radius: 5px;
-            border: none;
-            font-weight: 500;
-            box-shadow: 5px 5px 5px #8a7523;
+            font-weight: 400;
+            margin: 2rem 5px 10px 0;
+            padding: 12px 40px;
+            text-align: center;
+            user-select: none;
+            -webkit-user-select: none;
         }
-        .signup-with-google{
-            width:100%;
-            height:20%;
+
+        .signup-button:active {
+            box-shadow: rgba(0, 0, 0, .125) 0 3px 5px inset;
+        }
+
+        .signup-button:not([disabled]):active {
+            box-shadow: #8a7523 2px 2px 0 0, #000 2px 2px 0 1px;
+            transform: translate(2px, 2px);
+        }
+
+        .signup-with-google {
+            cursor: pointer;
+            width: 100%;
+            height: 20%;
             display: flex;
             flex-direction: column;
             margin-top: 2rem;
             justify-content: space-between;
-            .continue-with-google{
-                width:80%;
+
+            .continue-with-google {
+                width: 80%;
                 display: flex;
                 align-items: center;
-                & p{
-                    width:calc(85% / 2);
+
+                & p {
+                    width: calc(85% / 2);
                     border: 1px solid white;
                 }
-                & div{
+
+                & div {
                     width: 15%;
-                    height:100%;
+                    height: 100%;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                 }
             }
-            .google-signup-div{
-                width:80%;
+
+            .google-signup-div {
+                width: 80%;
                 height: 50%;
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                .content{
-                    width:50%;
-                    height:100%;
+
+                .content {
+                    width: 50%;
+                    height: 100%;
                     background-color: white;
-                    color:black;
+                    color: black;
                     display: flex;
                     justify-content: center;
                     align-items: center;
                     border-radius: 10px;
-                    & svg{
-                        margin-left:6px;
+
+                    & svg {
+                        margin-left: 6px;
                     }
                 }
             }
-              
-              
         }
-        }
-
+    }
 }

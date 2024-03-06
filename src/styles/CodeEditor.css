@@ -54,7 +54,7 @@
     margin-top: 25px;
     line-height: 1.4;
     border-radius: 5px;
-    background-color: rgb(3, 7, 36);
+    background-color: #141414;
     font-family: 'JetBrains Mono', 'Source Code Pro', monospace;
     font-size: 0.95rem;
     padding: 10px;
@@ -119,10 +119,10 @@ textarea {
 }
 
 button.cancel {
-    background-color: #D3080D;
+    background-color: #DB5461;
 }
 
 button.save {
-    background-color: rgb(32, 178, 170);
+    background-color: #38DAD8;
     color: #0F0F0F;
 }

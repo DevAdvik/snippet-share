@@ -5,7 +5,7 @@ import {
     faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "../styles/Snippet.css";
-import logo from "../assets/SnippetSphere-white.png";
+import logo from "../assets/SnippetSphere-vector.svg";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
@@ -18,8 +18,11 @@ import Login from "./login";
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
-export default function SnippetList({ allSnippets, searchValue, setSearchValue }) {
-    console.log(allSnippets);
+export default function SnippetList({
+    allSnippets,
+    searchValue,
+    setSearchValue,
+}) {
     const [user] = useAuthState(auth);
     const navigate = useNavigate();
     if (!user) {
@@ -30,7 +33,11 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
         <>
             {user ? (
                 <div className="snippetWrapper">
-                    <Header addSnippet={12} searchValue={searchValue} setSearchValue={setSearchValue}/>
+                    <Header
+                        addSnippet={12}
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                    />
                     <div className="snippetList">
                         {allSnippets.map((snippet) => {
                             return (
@@ -43,6 +50,7 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
                                     tiltMaxAngleX={10}
                                     tiltMaxAngleY={10}
                                     glareColor="lightblue"
+                                    tiltReverse={true}
                                 >
                                     <Link to={snippet.id} key={snippet.id}>
                                         <div
@@ -87,7 +95,10 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
                     Snippet Sphere
                 </h1>
                 <div className="reactIcons">
-                    <Search searchValue={searchValue} setSearchValue={setSearchValue}/>
+                    <Search
+                        searchValue={searchValue}
+                        setSearchValue={setSearchValue}
+                    />
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
@@ -96,10 +107,10 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
     );
 }
 
-function Search({searchValue, setSearchValue}) {
-    const handleUserInput = (ev)=>{
+function Search({ searchValue, setSearchValue }) {
+    const handleUserInput = (ev) => {
         setSearchValue(ev.target.value);
-    }
+    };
     return (
         <div className="search-box">
             <button className="btn-search" tabIndex={1}>

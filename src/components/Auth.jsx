@@ -16,55 +16,35 @@ import {
 } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
-export function SignInWithGoogle() {
-    const signInWithGoogle = () => {
+export const signInWithGoogle = async () => {
+    try {
         const provider = new GoogleAuthProvider();
-        signInWithPopup(auth, provider).then(async (result) => {
+        const result = await signInWithPopup(auth, provider);
+        const user = result.user;
+        addToUsersCollection(user);
+    } catch (error) {
+        console.log("Oops!");
+    }
+};
+
+export const signInWithEmail = (email, password) => {
+    signInWithEmailAndPassword(auth, email, password).then(async (result) => {
+        const user = result.user;
+        addToUsersCollection(user);
+    });
+};
+
+export const signUpWithEmail = (email, password) => {
+    createUserWithEmailAndPassword(auth, email, password).then(
+        async (result) => {
             const user = result.user;
             addToUsersCollection(user);
-        });
-    };
-    return (
-        <button className="googleBtn" onClick={signInWithGoogle}>
-            Sign In With Google
-        </button>
+        }
     );
-}
-
-export function SignInWithEmail() {
-    const signInWithEmail = (email, password) => {
-        signInWithEmailAndPassword(auth, email, password).then(
-            async (result) => {
-                const user = result.user;
-                addToUsersCollection(user);
-            }
-        );
-    };
-    return (
-        <button type="button" onClick={signInWithEmail}>
-            Log In
-        </button>
-    );
-}
-
-export function SignUpWithEmail() {
-    const signUpWithEmail = (email, password) => {
-        createUserWithEmailAndPassword(auth, email, password).then(
-            async (result) => {
-                const user = result.user;
-                addToUsersCollection(user);
-            }
-        );
-    };
-    return (
-        <button type="button" onClick={signUpWithEmail}>
-            Sign Up
-        </button>
-    );
-}
+};
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
 const firestore = getFirestore(app);
 
 const addToUsersCollection = async (user) => {

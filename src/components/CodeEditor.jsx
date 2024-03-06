@@ -4,7 +4,7 @@ import "highlight.js/styles/base16/material-darker.css";
 import firebaseConfig from "../firebase";
 import { Loading } from "./Wrapper";
 
-import { Select } from "antd";
+import { Select, Alert } from "antd";
 import Editor from "react-simple-code-editor";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -66,6 +66,17 @@ export default function CodeEditor() {
             content: userCode,
             isPublic: isPublic,
         }).then(setLoading(false));
+    }
+
+    function showAlert() {
+        return (
+            <Alert
+                message={"Saved Successfully!"}
+                type="success"
+                showIcon
+                closable
+            />
+        );
     }
 
     return (
