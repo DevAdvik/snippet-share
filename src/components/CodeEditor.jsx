@@ -29,6 +29,7 @@ export default function CodeEditor() {
     const [uid, setUid] = useState(0);
     const [language, setLanguage] = useState("auto");
     const [loading, setLoading] = useState(true);
+    const [showSuccess, setShowSuccess] = useState(false);
     const [copyIcon, setCopyIcon] = useState(faCopy);
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
@@ -54,6 +55,7 @@ export default function CodeEditor() {
                     data.createdAt.seconds * 1000 +
                     Math.floor(data.createdAt.nanoseconds / 1000000);
                 setCreatedAt(new Date(date).toLocaleString());
+                setLanguage(data.language);
                 setUid(data.uid);
                 setLoading(false);
             })
@@ -61,27 +63,38 @@ export default function CodeEditor() {
     }, []);
 
     async function updateSnippet() {
-        await updateDoc(doc(firestore, "snippets", snippetId), {
-            title: title,
-            content: userCode,
-            isPublic: isPublic,
-        }).then(setLoading(false));
+        try {
+            await updateDoc(doc(firestore, "snippets", snippetId), {
+                title: title,
+                content: userCode,
+                isPublic: isPublic,
+                language: language,
+            });
+            setLoading(false);
+            setShowSuccess(true);
+            setTimeout(() => {
+                setShowSuccess(false);
+            }, 2000);
+        } catch (error) {
+            console.log("Custon error");
+            console.log(error.code);
+        }
     }
 
-    function showAlert() {
-        return (
-            <Alert
-                message={"Saved Successfully!"}
-                type="success"
-                showIcon
-                closable
-            />
-        );
+    function highlightWithLanguage(code) {
+        if (language === "auto") {
+            return hljs.highlightAuto(code).value;
+        } else {
+            return hljs.highlight(code, { language: language }).value;
+        }
     }
 
     return (
         <>
             {loading && <Loading />}
+            {showSuccess && (
+                <Alert message="Saved Successfully!" type="success" showIcon />
+            )}
             {(isPublic || (user !== null && user.uid === uid)) && (
                 <div className="editor-wrapper">
                     <div className="headerTop">
@@ -108,7 +121,15 @@ export default function CodeEditor() {
                             }}
                         />
                     )}
-                    <div className="editor">
+                    <div className="configs">
+                        {user !== null && user.uid === uid && (
+                            <SelectLanguage
+                                setLanguage={(value) => {
+                                    setLanguage(value);
+                                }}
+                                lang={language}
+                            />
+                        )}
                         <FontAwesomeIcon
                             icon={copyIcon}
                             className="copyIcon"
@@ -121,13 +142,13 @@ export default function CodeEditor() {
                                 }, 1500);
                             }}
                         />
+                    </div>
+                    <div className="editor">
                         <Editor
                             disabled={user === null || user.uid !== uid}
                             value={userCode}
                             onValueChange={(code) => setUserCode(code)}
-                            highlight={(userCode) =>
-                                hljs.highlightAuto(userCode).value
-                            }
+                            highlight={highlightWithLanguage}
                             padding={10}
                             tabSize={4}
                         />
@@ -168,5 +189,63 @@ function TogglePublic({ isPublic, setIsPublic }) {
             <p>Public Snippet: </p>
             <input type="checkbox" checked={isPublic} onChange={setIsPublic} />
         </div>
+    );
+}
+
+function SelectLanguage({ setLanguage, lang }) {
+    return (
+        <Select
+            defaultValue={lang}
+            style={{
+                width: 120,
+            }}
+            onChange={setLanguage}
+            options={[
+                {
+                    value: "auto",
+                    label: "Auto",
+                },
+                {
+                    value: "javascript",
+                    label: "Javascript",
+                },
+                {
+                    value: "css",
+                    label: "CSS",
+                },
+                {
+                    value: "python",
+                    label: "Python",
+                },
+                {
+                    value: "java",
+                    label: "Java",
+                },
+                {
+                    value: "kotlin",
+                    label: "Kotlin",
+                },
+                {
+                    value: "swift",
+                    label: "Swift",
+                },
+                {
+                    value: "json",
+                    label: "JSON",
+                },
+                {
+                    value: "xml",
+                    label: "HTML/XML",
+                },
+                {
+                    value: "plaintext",
+                    label: "Text",
+                },
+                {
+                    value: "sql",
+                    label: "SQL",
+                },
+            ]}
+        />
     );
 }

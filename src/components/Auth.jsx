@@ -27,20 +27,29 @@ export const signInWithGoogle = async () => {
     }
 };
 
-export const signInWithEmail = (email, password) => {
-    signInWithEmailAndPassword(auth, email, password).then(async (result) => {
+export const signInWithEmail = async (email, password) => {
+    try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
         const user = result.user;
         addToUsersCollection(user);
-    });
+    } catch (error) {
+        console.log(error.code);
+        throw error;
+    }
 };
 
-export const signUpWithEmail = (email, password) => {
-    createUserWithEmailAndPassword(auth, email, password).then(
-        async (result) => {
-            const user = result.user;
-            addToUsersCollection(user);
-        }
-    );
+export const signUpWithEmail = async (email, password) => {
+    try {
+        const result = await createUserWithEmailAndPassword(
+            auth,
+            email,
+            password
+        );
+        const user = result.user;
+        addToUsersCollection(user);
+    } catch (error) {
+        console.log("Oops!");
+    }
 };
 
 const app = initializeApp(firebaseConfig);

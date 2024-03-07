@@ -7,6 +7,7 @@ import SnippetWrapper from "./components/Wrapper.jsx";
 import CodeEditor from "./components/CodeEditor.jsx";
 import AddSnippet from "./components/AddSnippet.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+import Signup from "./components/signup.jsx";
 
 const router = createBrowserRouter([
     {
@@ -16,6 +17,10 @@ const router = createBrowserRouter([
     {
         path: "/login",
         element: <Login />,
+    },
+    {
+        path: "/signup",
+        element: <Signup />,
     },
     {
         path: "/snippets",
