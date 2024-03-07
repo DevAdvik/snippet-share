@@ -26,34 +26,20 @@ function Login() {
         <>
             {showError && <ShowError msg={errorMessage} />}
             <section className={styles["snippet-share-login-page"]}>
-                <section
-                    className={styles["snippet-share-login-page-container"]}
-                >
+                <section className={styles["snippet-share-login-page-container"]}>
                     <div className={styles["login-email-password-content"]}>
                         <div
-                            className={
-                                styles[
-                                    "login-email-password-content-inside-alignment-div"
-                                ]
-                            }
+                            className={styles["login-email-password-content-inside-alignment-div"]}
                         >
                             <div className={styles["logo-and-image"]}>
-                                <img
-                                    className={styles["logo-image"]}
-                                    src={logo}
-                                    alt="logo"
-                                />
+                                <img className={styles["logo-image"]} src={logo} alt="logo" />
                                 <p>Snippet Sphere</p>
                             </div>
                             <div className={styles["Welcome-back-description"]}>
                                 <h1>Welcome back! </h1>
                                 <p>Login into your account</p>
                             </div>
-                            <div
-                                className={
-                                    styles["email-password-login-button"]
-                                }
-                            >
+                            <div className={styles["email-password-login-button"]}>
                                 <div className={styles["email-input-div"]}>
                                     <p>Email</p>
                                     <input
@@ -82,18 +68,10 @@ function Login() {
                                     type="button"
                                     onClick={async () => {
                                         try {
-                                            await signInWithEmail(
-                                                email,
-                                                password
-                                            );
+                                            await signInWithEmail(email, password);
                                         } catch (error) {
-                                            if (
-                                                error.code ===
-                                                "auth/invalid-credential"
-                                            ) {
-                                                setErrorMessage(
-                                                    "Invalid Credentials!"
-                                                );
+                                            if (error.code === "auth/invalid-credential") {
+                                                setErrorMessage("Invalid Credentials!");
                                                 setShowError(true);
                                                 setInterval(() => {
                                                     setShowError(false);
@@ -105,11 +83,7 @@ function Login() {
                                     Log-in
                                 </button>
                                 <div className={styles["login-with-google"]}>
-                                    <div
-                                        className={
-                                            styles["continue-with-google"]
-                                        }
-                                    >
+                                    <div className={styles["continue-with-google"]}>
                                         <p></p>
                                         <div>Or</div>
                                         <p></p>
@@ -146,14 +120,8 @@ function Login() {
                                                     d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                                                     fill="#EA4335"
                                                 />
-                                                <path
-                                                    d="M1 1h22v22H1z"
-                                                    fill="none"
-                                                />
-                                                <script
-                                                    xmlns=""
-                                                    id="bw-fido2-page-script"
-                                                />
+                                                <path d="M1 1h22v22H1z" fill="none" />
+                                                <script xmlns="" id="bw-fido2-page-script" />
                                             </svg>
                                         </div>
                                     </div>
@@ -162,17 +130,9 @@ function Login() {
                         </div>
                     </div>
                     <div className={styles["login-image-add-content"]}>
-                        <div
-                            className={
-                                styles[
-                                    "login-image-add-content-inner-alignment-div"
-                                ]
-                            }
-                        >
+                        <div className={styles["login-image-add-content-inner-alignment-div"]}>
                             <div className={styles["quetes"]}>
-                                <p>
-                                    Sharing Brilliance, one Snippet at a Time!
-                                </p>
+                                <p>Sharing Brilliance, one Snippet at a Time!</p>
                             </div>
                             <div className={styles["image-div"]}>
                                 <img src={baiya} alt="" />
@@ -180,8 +140,7 @@ function Login() {
                             <div className={styles["contact-us"]}>
                                 <div>
                                     <p>
-                                        Got a Question ?{" "}
-                                        <FontAwesomeIcon icon={faEnvelope} />{" "}
+                                        Got a Question ? <FontAwesomeIcon icon={faEnvelope} />{" "}
                                         <span>advik.singh@zohocorp.com</span>
                                     </p>
                                 </div>
@@ -195,7 +154,9 @@ function Login() {
 }
 
 function ShowError({ msg }) {
-    return <Alert type="error" closable showIcon message={msg} className={styles["ant-alert-error"]}/>;
+    return (
+        <Alert type="error" closable showIcon message={msg} className={styles["ant-alert-error"]} />
+    );
 }
 
 export default Login;

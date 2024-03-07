@@ -8,11 +8,7 @@ import { Select, Alert } from "antd";
 import Editor from "react-simple-code-editor";
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faCheck,
-    faChevronLeft,
-    faCopy,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCheck, faChevronLeft, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -51,9 +47,7 @@ export default function CodeEditor() {
                 setTitle(data.title);
                 setUserCode(data.content);
                 setIsPublic(data.isPublic);
-                const date =
-                    data.createdAt.seconds * 1000 +
-                    Math.floor(data.createdAt.nanoseconds / 1000000);
+                const date = data.createdAt.seconds * 1000 + Math.floor(data.createdAt.nanoseconds / 1000000);
                 setCreatedAt(new Date(date).toLocaleString());
                 setLanguage(data.language);
                 setUid(data.uid);
@@ -92,9 +86,7 @@ export default function CodeEditor() {
     return (
         <>
             {loading && <Loading />}
-            {showSuccess && (
-                <Alert message="Saved Successfully!" type="success" showIcon />
-            )}
+            {showSuccess && <Alert message="Saved Successfully!" type="success" showIcon />}
             {(isPublic || (user !== null && user.uid === uid)) && (
                 <div className="editor-wrapper">
                     <div className="headerTop">

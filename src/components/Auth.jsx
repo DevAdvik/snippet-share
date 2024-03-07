@@ -6,14 +6,7 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
 } from "firebase/auth";
-import {
-    doc,
-    getDoc,
-    getFirestore,
-    serverTimestamp,
-    setDoc,
-    updateDoc,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore, serverTimestamp, setDoc, updateDoc } from "firebase/firestore";
 import { initializeApp } from "firebase/app";
 
 export const signInWithGoogle = async () => {
@@ -40,11 +33,7 @@ export const signInWithEmail = async (email, password) => {
 
 export const signUpWithEmail = async (email, password) => {
     try {
-        const result = await createUserWithEmailAndPassword(
-            auth,
-            email,
-            password
-        );
+        const result = await createUserWithEmailAndPassword(auth, email, password);
         const user = result.user;
         addToUsersCollection(user);
     } catch (error) {

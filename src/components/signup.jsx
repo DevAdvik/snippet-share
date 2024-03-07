@@ -24,19 +24,9 @@ function Signup() {
         <section className={styles["snippet-share-signup-page"]}>
             <section className={styles["snippet-share-signup-page-container"]}>
                 <div className={styles["signup-email-password-content"]}>
-                    <div
-                        className={
-                            styles[
-                                "signup-email-password-content-inside-alignment-div"
-                            ]
-                        }
-                    >
+                    <div className={styles["signup-email-password-content-inside-alignment-div"]}>
                         <div className={styles["logo-and-image"]}>
-                            <img
-                                className={styles["logo-image"]}
-                                src={logo}
-                                alt="logo"
-                            />
+                            <img className={styles["logo-image"]} src={logo} alt="logo" />
                             <p>Snippet Sphere</p>
                         </div>
                         <div className={styles["Welcome-back-description"]}>
@@ -90,11 +80,9 @@ function Signup() {
                                 className={styles["signup-button"]}
                                 type="button"
                                 onClick={() => {
-                                    signUpWithEmail(email, password).then(
-                                        () => {
-                                            navigate("/login");
-                                        }
-                                    );
+                                    signUpWithEmail(email, password).then(() => {
+                                        navigate("/login");
+                                    });
                                 }}
                             >
                                 Sign-up
@@ -137,14 +125,8 @@ function Signup() {
                                                 d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
                                                 fill="#EA4335"
                                             />
-                                            <path
-                                                d="M1 1h22v22H1z"
-                                                fill="none"
-                                            />
-                                            <script
-                                                xmlns=""
-                                                id="bw-fido2-page-script"
-                                            />
+                                            <path d="M1 1h22v22H1z" fill="none" />
+                                            <script xmlns="" id="bw-fido2-page-script" />
                                         </svg>
                                     </div>
                                 </div>
@@ -153,13 +135,7 @@ function Signup() {
                     </div>
                 </div>
                 <div className={styles["signup-image-add-content"]}>
-                    <div
-                        className={
-                            styles[
-                                "signup-image-add-content-inner-alignment-div"
-                            ]
-                        }
-                    >
+                    <div className={styles["signup-image-add-content-inner-alignment-div"]}>
                         <div className={styles["quetes"]}>
                             <p>Sharing Brilliance, one Snippet at a Time!</p>
                         </div>
@@ -169,8 +145,7 @@ function Signup() {
                         <div className={styles["contact-us"]}>
                             <div>
                                 <p>
-                                    Got a Question ?{" "}
-                                    <FontAwesomeIcon icon={faEnvelope} />{" "}
+                                    Got a Question ? <FontAwesomeIcon icon={faEnvelope} />{" "}
                                     <span>advik.singh@zohocorp.com</span>
                                 </p>
                             </div>
