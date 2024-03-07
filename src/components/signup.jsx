@@ -4,7 +4,7 @@ import logo from "../assets/logo.png";
 import styles from "../styles/signup.module.css";
 import baiya from "../assets/baiya.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./Auth";
@@ -14,10 +14,48 @@ function Signup() {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
+    const [showError, setShowError] = useState(false);
+    const [passwordIcon, setPasswordIcon] = useState(faEye);
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     if (user) {
         navigate("/snippets");
+    }
+
+    function authenticateUser() {
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        if (name.length === 0) {
+            setErrorMessage("Enter your name");
+            setShowError(true);
+            return;
+        } else if (email.length === 0) {
+            setErrorMessage("Enter your email");
+            setShowError(true);
+            return;
+        } else if (!emailRegex.test(email)) {
+            setErrorMessage("Invalid email address");
+            setShowError(true);
+            return;
+        } else if (!password.length >= 8) {
+            setErrorMessage("Password should contain atleast 8 characters");
+            setShowError(true);
+            return;
+        }
+
+        signUpWithEmail(email, password).then(() => {
+            navigate("/snippets");
+        });
+    }
+    function InputTypeChanger(ev) {
+        let closestInput = ev.target.closest("div").querySelector("Input");
+        if (passwordIcon === faEye) {
+            closestInput.type = "text";
+            setPasswordIcon(faEyeSlash);
+        } else if (passwordIcon === faEyeSlash) {
+            closestInput.type = "password";
+            setPasswordIcon(faEye);
+        }
     }
 
     return (
@@ -33,6 +71,9 @@ function Signup() {
                             <h1>Welcome! </h1>
                             <p>Create a new account</p>
                         </div>
+                        <div className={styles["Alert-box-authentication"]}>
+                            {showError && <p>{errorMessage}</p>}
+                        </div>
                         <div className={styles["email-password-signup-button"]}>
                             <div className={styles["username-input-div"]}>
                                 <p>Your name:</p>
@@ -41,6 +82,7 @@ function Signup() {
                                     value={name}
                                     onChange={(ev) => {
                                         setName(ev.target.value);
+                                        setShowError(false);
                                     }}
                                 />
                             </div>
@@ -51,19 +93,31 @@ function Signup() {
                                     value={email}
                                     onChange={(ev) => {
                                         setEmail(ev.target.value);
+                                        setShowError(false);
                                     }}
                                 />
                             </div>
                             <div className={styles["password-input-div"]}>
                                 <p>Password</p>
-                                <input
-                                    type="password"
-                                    value={password}
-                                    onChange={(ev) => {
-                                        setPassword(ev.target.value);
-                                    }}
-                                />
-                                <div>
+                                <div className={styles["password-input-parent-div"]}>
+                                    <input
+                                        type="password"
+                                        value={password}
+                                        onChange={(ev) => {
+                                            setPassword(ev.target.value);
+                                            setShowError(false);
+                                        }}
+                                    />
+                                    <FontAwesomeIcon
+                                        icon={passwordIcon}
+                                        onClick={(ev) => {
+                                            InputTypeChanger(ev);
+                                        }}
+                                        className={styles["eye-icon"]}
+                                    />
+                                </div>
+
+                                <div className={styles["Already have an account"]}>
                                     <p>
                                         Already have an account?{" "}
                                         <span
@@ -79,11 +133,7 @@ function Signup() {
                             <button
                                 className={styles["signup-button"]}
                                 type="button"
-                                onClick={() => {
-                                    signUpWithEmail(email, password).then(() => {
-                                        navigate("/login");
-                                    });
-                                }}
+                                onClick={authenticateUser}
                             >
                                 Sign-up
                             </button>

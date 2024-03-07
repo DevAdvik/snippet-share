@@ -4,27 +4,65 @@ import logo from "../assets/logo.png";
 import styles from "../styles/login.module.css";
 import baiya from "../assets/baiya.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope, faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./Auth";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Alert } from "antd";
 
 function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showError, setShowError] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [passwordIcon, setPasswordIcon] = useState(faEye);
     const navigate = useNavigate();
     const [user] = useAuthState(auth);
     if (user) {
         navigate("/snippets");
     }
 
+    function InputTypeChanger(ev) {
+        let closestInput = ev.target.closest("div").querySelector("Input");
+        if (passwordIcon === faEye) {
+            closestInput.type = "text";
+            setPasswordIcon(faEyeSlash);
+        } else if (passwordIcon === faEyeSlash) {
+            closestInput.type = "password";
+            setPasswordIcon(faEye);
+        }
+    }
+
+    async function authenticateUser() {
+        setShowError(false);
+
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (email.length === 0) {
+            setErrorMessage("Enter your email");
+            setShowError(true);
+            return;
+        } else if (!emailRegex.test(email)) {
+            setErrorMessage("Invalid email address");
+            setShowError(true);
+            return;
+        } else if (password.length === 0) {
+            setErrorMessage("Enter your password");
+            setShowError(true);
+            return;
+        }
+        try {
+            await signInWithEmail(email, password);
+        } catch (error) {
+            if (error.code === "auth/invalid-credential") {
+                setErrorMessage("Invalid Credentials!");
+                setShowError(true);
+            }
+        }
+    }
+
     return (
         <>
-            {showError && <ShowError msg={errorMessage} />}
             <section className={styles["snippet-share-login-page"]}>
                 <section className={styles["snippet-share-login-page-container"]}>
                     <div className={styles["login-email-password-content"]}>
@@ -39,6 +77,9 @@ function Login() {
                                 <h1>Welcome back! </h1>
                                 <p>Login into your account</p>
                             </div>
+                            <div className={styles["Alert-box-authentication"]}>
+                                {showError && <p>{errorMessage}</p>}
+                            </div>
                             <div className={styles["email-password-login-button"]}>
                                 <div className={styles["email-input-div"]}>
                                     <p>Email</p>
@@ -47,18 +88,29 @@ function Login() {
                                         value={email}
                                         onChange={(e) => {
                                             setEmail(e.target.value);
+                                            setShowError(false);
                                         }}
                                     />
                                 </div>
                                 <div className={styles["password-input-div"]}>
                                     <p>Password</p>
-                                    <input
-                                        type="password"
-                                        value={password}
-                                        onChange={(e) => {
-                                            setPassword(e.target.value);
-                                        }}
-                                    />
+                                    <div className={styles["password-input-parent-div"]}>
+                                        <input
+                                            type="password"
+                                            value={password}
+                                            onChange={(ev) => {
+                                                setPassword(ev.target.value);
+                                                setShowError(false);
+                                            }}
+                                        />
+                                        <FontAwesomeIcon
+                                            icon={passwordIcon}
+                                            onClick={(ev) => {
+                                                InputTypeChanger(ev);
+                                            }}
+                                            className={styles["eye-icon"]}
+                                        />
+                                    </div>
                                     <div>
                                         <p>Forgot password?</p>
                                     </div>
@@ -66,19 +118,7 @@ function Login() {
                                 <button
                                     className={styles["login-button"]}
                                     type="button"
-                                    onClick={async () => {
-                                        try {
-                                            await signInWithEmail(email, password);
-                                        } catch (error) {
-                                            if (error.code === "auth/invalid-credential") {
-                                                setErrorMessage("Invalid Credentials!");
-                                                setShowError(true);
-                                                setInterval(() => {
-                                                    setShowError(false);
-                                                }, 3000);
-                                            }
-                                        }
-                                    }}
+                                    onClick={authenticateUser}
                                 >
                                     Log-in
                                 </button>
@@ -150,12 +190,6 @@ function Login() {
                 </section>
             </section>
         </>
-    );
-}
-
-function ShowError({ msg }) {
-    return (
-        <Alert type="error" closable showIcon message={msg} className={styles["ant-alert-error"]} />
     );
 }
 
