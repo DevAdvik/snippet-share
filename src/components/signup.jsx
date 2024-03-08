@@ -43,7 +43,7 @@ function Signup() {
             return;
         }
 
-        signUpWithEmail(email, password).then(() => {
+        signUpWithEmail(email, password, name).then(() => {
             navigate("/snippets");
         });
     }
@@ -117,7 +117,7 @@ function Signup() {
                                     />
                                 </div>
 
-                                <div className={styles["Already have an account"]}>
+                                <div className={styles["Already"]}>
                                     <p>
                                         Already have an account?{" "}
                                         <span

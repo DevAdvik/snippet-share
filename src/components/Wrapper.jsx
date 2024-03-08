@@ -2,13 +2,7 @@ import Snippet from "./Snippet";
 import "../styles/Wrapper.css";
 import { useEffect, useState } from "react";
 import firebaseConfig from "../firebase";
-import {
-    collection,
-    getDocs,
-    query,
-    where,
-    getFirestore,
-} from "firebase/firestore";
+import { collection, getDocs, query, where, getFirestore, orderBy } from "firebase/firestore";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
@@ -31,10 +25,14 @@ export default function SnippetWrapper() {
     useEffect(() => {
         async function fetchData() {
             if (user) {
-                const response = await getSnippets(user.uid);
-                setAllSnippets(response);
-                setCurrentSnippets(response);
-                setLoading(false);
+                try {
+                    const response = await getSnippets(user.uid);
+                    setAllSnippets(response);
+                    setCurrentSnippets(response);
+                    setLoading(false);
+                } catch (error) {
+                    console.log(error);
+                }
             }
         }
         fetchData();
@@ -45,23 +43,32 @@ export default function SnippetWrapper() {
             return;
         }
         const filtered = allSnippets.filter((snippet) => {
-            return (snippet.title.toLowerCase().includes(userSearch.toLowerCase()) ||
-                snippet.content.toLowerCase().includes(userSearch.toLowerCase()));
+            return (
+                snippet.title.toLowerCase().includes(userSearch.toLowerCase()) ||
+                snippet.content.toLowerCase().includes(userSearch.toLowerCase())
+            );
         });
         setCurrentSnippets(filtered);
-
     }, [userSearch]);
 
     return (
         <>
             {loading && <Loading />}
-            <Snippet allSnippets={currentSnippets} searchValue={userSearch} setSearchValue={setUserSearch} />
+            <Snippet
+                allSnippets={currentSnippets}
+                searchValue={userSearch}
+                setSearchValue={setUserSearch}
+            />
         </>
     );
 }
 
 async function getSnippets(uid) {
-    const q = query(collection(firestore, "snippets"), where("uid", "==", uid));
+    const q = query(
+        collection(firestore, "snippets"),
+        where("uid", "==", uid),
+        orderBy("createdAt", "desc")
+    );
     const querySnapshot = await getDocs(q);
     const dummyArray = [];
     querySnapshot.forEach((doc) => {
@@ -77,8 +84,6 @@ async function getSnippets(uid) {
     });
     return dummyArray;
 }
-
-
 
 export function Loading() {
     return (
