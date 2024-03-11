@@ -8,7 +8,6 @@ import CodeEditor from "./components/CodeEditor.jsx";
 import AddSnippet from "./components/AddSnippet.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Signup from "./components/signup.jsx";
-import { DotenvConfigOptions } from "dotenv";
 
 const router = createBrowserRouter([
     {
