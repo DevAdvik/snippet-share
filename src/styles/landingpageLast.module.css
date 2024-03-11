@@ -61,6 +61,7 @@
                 border: none;
                 outline: none;
                 font-family: 'Montserrat', sans-serif;
+                cursor: pointer;
             }
 
             .signup {

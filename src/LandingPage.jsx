@@ -158,10 +158,22 @@ function LandingPage() {
                         firsthand.
                     </div>
                     <div className={lastStyles.buttons}>
-                        <button type="button" className={lastStyles.signup}>
+                        <button
+                            type="button"
+                            className={lastStyles.signup}
+                            onClick={() => {
+                                navigator("/signup");
+                            }}
+                        >
                             Sign-up
                         </button>
-                        <button type="button" className={lastStyles.login}>
+                        <button
+                            type="button"
+                            className={lastStyles.login}
+                            onClick={() => {
+                                navigator("/login");
+                            }}
+                        >
                             Login
                         </button>
                     </div>
