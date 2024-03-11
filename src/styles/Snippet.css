@@ -38,6 +38,7 @@
         display: flex;
         gap: 10px;
         align-items: center;
+        width: fit-content;
     }
 }
 
@@ -162,10 +163,6 @@
         width: 100%;
         transition: .2s;
         color: #38DAD8;
-
-        &:hover {
-            /* color: #F7E8A4; */
-        }
     }
 }
 
@@ -218,12 +215,12 @@
         font-family: 'SourceCodePro', 'Montserrat', sans-serif;
     }
 
-    &:hover {
-        background-color: rgba(0, 0, 0, 0.82);
-    }
-
     &:active {
         scale: 0.99;
+    }
+
+    &:hover {
+        background-color: rgba(23, 24, 25, 0.3);
     }
 }
 
@@ -236,8 +233,7 @@
     height: 100%;
     z-index: -1;
     backdrop-filter: blur(8px);
-    background-color: rgba(56, 218, 216, 0.1);
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(23, 24, 25, 0.2);
     border-radius: 10px;
     transition: .3s;
     -webkit-box-shadow: 0px 0px 2px 0px rgba(56, 218, 215, 0.5);

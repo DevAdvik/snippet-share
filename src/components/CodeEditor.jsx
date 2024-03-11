@@ -44,10 +44,13 @@ export default function CodeEditor() {
         }
         getSnippet(docRef)
             .then((data) => {
+                console.log(data);
                 setTitle(data.title);
                 setUserCode(data.content);
                 setIsPublic(data.isPublic);
-                const date = data.createdAt.seconds * 1000 + Math.floor(data.createdAt.nanoseconds / 1000000);
+                const date =
+                    data.createdAt.seconds * 1000 +
+                    Math.floor(data.createdAt.nanoseconds / 1000000);
                 setCreatedAt(new Date(date).toLocaleString());
                 setLanguage(data.language);
                 setUid(data.uid);
