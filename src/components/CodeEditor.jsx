@@ -14,6 +14,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore, doc, getDoc, updateDoc } from "firebase/firestore";
 import { useParams, useNavigate } from "react-router-dom";
+import ErrorPage from "./ErrorPage";
 
 export default function CodeEditor() {
     const navigate = useNavigate();
@@ -26,7 +27,9 @@ export default function CodeEditor() {
     const [language, setLanguage] = useState("auto");
     const [loading, setLoading] = useState(true);
     const [showSuccess, setShowSuccess] = useState(false);
+    const [snippetNotFound, setSnippetNotFound] = useState(false);
     const [copyIcon, setCopyIcon] = useState(faCopy);
+
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
     const firestore = getFirestore(app);
@@ -44,7 +47,6 @@ export default function CodeEditor() {
         }
         getSnippet(docRef)
             .then((data) => {
-                console.log(data);
                 setTitle(data.title);
                 setUserCode(data.content);
                 setIsPublic(data.isPublic);
@@ -56,7 +58,11 @@ export default function CodeEditor() {
                 setUid(data.uid);
                 setLoading(false);
             })
-            .catch((err) => console.log(err));
+            .catch((err) => {
+                console.error(err);
+                setLoading(false);
+                setSnippetNotFound(true);
+            });
     }, []);
 
     async function updateSnippet() {
@@ -73,7 +79,7 @@ export default function CodeEditor() {
                 setShowSuccess(false);
             }, 2000);
         } catch (error) {
-            console.log("Custon error");
+            console.log("Custom error");
             console.log(error.code);
         }
     }
@@ -89,8 +95,9 @@ export default function CodeEditor() {
     return (
         <>
             {loading && <Loading />}
+            {snippetNotFound && <ErrorPage missingSnippet={true} />}
             {showSuccess && <Alert message="Saved Successfully!" type="success" showIcon />}
-            {(isPublic || (user !== null && user.uid === uid)) && (
+            {!snippetNotFound && (isPublic || (user !== null && user.uid === uid)) && (
                 <div className="editor-wrapper">
                     <div className="headerTop">
                         <FontAwesomeIcon

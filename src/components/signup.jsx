@@ -1,6 +1,6 @@
 import { signUpWithEmail, signInWithGoogle } from "./Auth";
 
-import logo from "../assets/logo.png";
+import logo from "../assets/snippetSphere.svg";
 import styles from "../styles/signup.module.css";
 import baiya from "../assets/baiya.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

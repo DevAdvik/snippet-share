@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
-import "../styles/Snippet.css";
+import styles from "../styles/Snippet.module.css";
 import logo from "../assets/SnippetSphere-vector.svg";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -24,39 +24,49 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
     return (
         <>
             {user ? (
-                <div className="snippetWrapper">
-                    <Header
-                        addSnippet={12}
-                        searchValue={searchValue}
-                        setSearchValue={setSearchValue}
-                    />
-                    <div className="snippetList">
-                        {allSnippets.map((snippet) => {
-                            return (
-                                <Tilt
-                                    key={snippet.id}
-                                    className="parallax-tilt"
-                                    glareEnable={true}
-                                    glareMaxOpacity={0.4}
-                                    glareBorderRadius="10px"
-                                    tiltMaxAngleX={10}
-                                    tiltMaxAngleY={10}
-                                    glareColor="lightblue"
-                                    tiltReverse={true}
-                                >
-                                    <Link to={snippet.id} key={snippet.id}>
-                                        <div className="singleSnippet" key={snippet.id}>
-                                            <h2 className="limit-lines limit2">{snippet.title}</h2>
-                                            <p className="limit-lines limit3">{snippet.content}</p>
-                                            <p>
-                                                Created on:{" "}
-                                                {new Date(snippet.createdAt).toLocaleString()}
-                                            </p>
-                                        </div>
-                                    </Link>
-                                </Tilt>
-                            );
-                        })}
+                <div className={styles.snippetBg}>
+                    <div className={styles.snippetWrapper}>
+                        <Header
+                            addSnippet={12}
+                            searchValue={searchValue}
+                            setSearchValue={setSearchValue}
+                        />
+                        <div className={styles.snippetList}>
+                            {allSnippets.map((snippet) => {
+                                return (
+                                    <Tilt
+                                        key={snippet.id}
+                                        className={styles.parallaxTilt}
+                                        glareEnable={true}
+                                        glareMaxOpacity={0.4}
+                                        glareBorderRadius="10px"
+                                        tiltMaxAngleX={10}
+                                        tiltMaxAngleY={10}
+                                        glareColor="lightblue"
+                                        tiltReverse={true}
+                                    >
+                                        <Link to={snippet.id} key={snippet.id}>
+                                            <div className={styles.singleSnippet} key={snippet.id}>
+                                                <h2
+                                                    className={`${styles.limitLines} ${styles.limit2}`}
+                                                >
+                                                    {snippet.title}
+                                                </h2>
+                                                <p
+                                                    className={`${styles.limitLines} ${styles.limit3}`}
+                                                >
+                                                    {snippet.content}
+                                                </p>
+                                                <p>
+                                                    Created on:{" "}
+                                                    {new Date(snippet.createdAt).toLocaleString()}
+                                                </p>
+                                            </div>
+                                        </Link>
+                                    </Tilt>
+                                );
+                            })}
+                        </div>
                     </div>
                 </div>
             ) : (
@@ -72,12 +82,12 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
     }
     return (
         <>
-            <div className="topHeader">
+            <div className={styles.topHeader}>
                 <h1 title="Sharing Brilliance, One Snippet at a time!">
                     <img src={logo} alt="Logo " width="50px" />
-                    Snippet Sphere
+                    <span>Snippet Sphere</span>
                 </h1>
-                <div className="reactIcons">
+                <div className={styles.reactIcons}>
                     <Search searchValue={searchValue} setSearchValue={setSearchValue} />
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
@@ -92,18 +102,14 @@ function Search({ searchValue, setSearchValue }) {
         setSearchValue(ev.target.value);
     };
     return (
-        <div className="search-box">
-            <button className="btn-search" tabIndex={1}>
-                <FontAwesomeIcon
-                    icon={faMagnifyingGlass}
-                    title="Search Snippets"
-                    className="searchIcon"
-                />
+        <div className={styles.searchBox}>
+            <button className={styles.btnSearch} tabIndex={1}>
+                <FontAwesomeIcon icon={faMagnifyingGlass} title="Search Snippets" />
             </button>
             <input
                 type="text"
                 name="search"
-                className="input-search"
+                className={styles.inputSearch}
                 placeholder="Search snippets"
                 value={searchValue}
                 onChange={handleUserInput}

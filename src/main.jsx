@@ -1,18 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Homepage from "./Home.jsx";
 import Login from "./components/login.jsx";
 import SnippetWrapper from "./components/Wrapper.jsx";
 import CodeEditor from "./components/CodeEditor.jsx";
 import AddSnippet from "./components/AddSnippet.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
 import Signup from "./components/signup.jsx";
+import LandingPage from "./LandingPage.jsx";
 
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Homepage />,
+        element: <LandingPage />,
     },
     {
         path: "/login",
@@ -29,7 +29,6 @@ const router = createBrowserRouter([
     {
         path: "/snippets/:snippetId",
         element: <CodeEditor />,
-        errorElement: <ErrorPage />,
     },
     {
         path: "/newSnippet",
@@ -37,7 +36,7 @@ const router = createBrowserRouter([
     },
     {
         path: "*",
-        element: <ErrorPage />,
+        element: <ErrorPage missingSnippet={false} />,
     },
 ]);
 

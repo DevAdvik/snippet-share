@@ -111,6 +111,7 @@
         width: 100%;
         display: flex;
         align-items: center;
+        mix-blend-mode: lighten;
 
         .logo-image {
             width: 100px;

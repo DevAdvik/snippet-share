@@ -1,5 +1,5 @@
 import Snippet from "./Snippet";
-import "../styles/Wrapper.css";
+import style from "../styles/Wrapper.module.css";
 import { useEffect, useState } from "react";
 import firebaseConfig from "../firebase";
 import { collection, getDocs, query, where, getFirestore, orderBy } from "firebase/firestore";
@@ -88,8 +88,8 @@ async function getSnippets(uid) {
 export function Loading() {
     return (
         <>
-            <div className="loadingIcon">
-                <div className="loadingSpinner"></div>
+            <div className={style.loadingIcon}>
+                <div className={style.loadingSpinner}></div>
             </div>
         </>
     );

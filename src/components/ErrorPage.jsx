@@ -1,8 +1,8 @@
 import styles from "../styles/errorpage.module.css";
 import errorImage from "../assets/404.svg";
-import logo from "../assets/logo.png";
+import logo from "../assets/snippetSphere.svg";
 
-function ErrorPage() {
+function ErrorPage({ missingSnippet }) {
     return (
         <section className={styles["error-page"]}>
             <div className={styles["logo-name-your-snippet"]}>
@@ -17,11 +17,16 @@ function ErrorPage() {
             <img src={errorImage} className={styles["error-image"]} alt="error-image" />
             <div className={styles["error-content"]}>
                 <h2>
-                    The <span>Snippet</span> you are looking for doesn't exist
+                    {missingSnippet ? (
+                        <>
+                            The <span>Snippet</span> you are looking for doesn&apos;t exist or the
+                            given snippet is a private snippet
+                        </>
+                    ) : (
+                        `Page not found! Are you sure you entered the correct URL?`
+                    )}
                 </h2>
-                <p>
-                    You may mistyped the address or the <span>Snippet</span> may have moved.
-                </p>
+                <p>You may mistyped the address.</p>
                 <button>Go To Home</button>
             </div>
         </section>
