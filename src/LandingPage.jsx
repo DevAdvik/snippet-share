@@ -6,6 +6,10 @@ import phone from "./assets/mobile.svg";
 import styles from "./styles/homepage.module.css";
 import featureStyles from "./styles/features.module.css";
 import lastStyles from "./styles/landingpageLast.module.css";
+import footerStyles from "./styles/footer.module.css";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faGithub, faInstagram, faSnapchat, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
 
 function LandingPage() {
@@ -177,6 +181,29 @@ function LandingPage() {
                         </button>
                     </div>
                 </div>
+            </section>
+
+            <section className={footerStyles.footer}>
+                <div className={footerStyles.container}>
+                    <div className={footerStyles.content}>
+                        <img src={logo} />
+                        <div>
+                            <p>Snippet</p>
+                            <p>Sphere</p>
+                        </div>
+                    </div>
+                    <div className={footerStyles.icons}>
+                        <div>
+                            <FontAwesomeIcon icon={faGithub} />
+                            <FontAwesomeIcon icon={faYoutube} />
+                            <FontAwesomeIcon icon={faInstagram} />
+                            <FontAwesomeIcon icon={faSnapchat} />
+                        </div>
+                    </div>
+                </div>
+                <p className={footerStyles["copy-rights"]}>
+                    Copyright 2024 &#169; All Rights Reserved
+                </p>
             </section>
         </div>
     );
