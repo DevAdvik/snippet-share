@@ -199,8 +199,11 @@ export function SelectLanguage({ setLanguage, lang }) {
         <Select
             defaultValue={lang}
             style={{
-                width: 120,
+                width: "120px",
             }}
+            showSearch={true}
+            notFoundContent="Language not supported :("
+            popupMatchSelectWidth={false}
             onChange={setLanguage}
             options={[
                 {
