@@ -50,7 +50,7 @@ export default function AddSnippet() {
                 content: userCode,
                 uid: user.uid,
             });
-            navigator.clipboard.writeText(document.location.origin +"/" + docRef.id);
+            navigator.clipboard.writeText(document.location.origin + "/snippets/" + docRef.id);
             setShowSuccess(true);
             navigate("/snippets");
         } catch (error) {
