@@ -27,7 +27,9 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
                 <div className={styles.snippetBg}>
                     <div className={styles.snippetWrapper}>
                         <Header
-                            addSnippet={12}
+                            addSnippet={() => {
+                                navigate("/newSnippet");
+                            }}
                             searchValue={searchValue}
                             setSearchValue={setSearchValue}
                         />
@@ -84,12 +86,12 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
         <>
             <div className={styles.topHeader}>
                 <h1 title="Sharing Brilliance, One Snippet at a time!">
-                    <img src={logo} alt="Logo " width="50px" />
+                    <img src={logo} alt="Logo " width="80px" />
                     <span>Snippet Sphere</span>
                 </h1>
                 <div className={styles.reactIcons}>
                     <Search searchValue={searchValue} setSearchValue={setSearchValue} />
-                    <FontAwesomeIcon icon={faPlus} title="Add new snippet!" />
+                    <FontAwesomeIcon icon={faPlus} title="Add new snippet!" onClick={addSnippet} />
                     <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
             </div>

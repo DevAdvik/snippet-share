@@ -1,5 +1,5 @@
 import hljs from "../requiredHighlights";
-import "../styles/CodeEditor.css";
+import styles from "../styles/codeEditor.module.css";
 import "highlight.js/styles/base16/material-darker.css";
 import firebaseConfig from "../firebase";
 import { Loading } from "./Wrapper";
@@ -98,8 +98,8 @@ export default function CodeEditor() {
             {snippetNotFound && <ErrorPage missingSnippet={true} />}
             {showSuccess && <Alert message="Saved Successfully!" type="success" showIcon />}
             {!snippetNotFound && (isPublic || (user !== null && user.uid === uid)) && (
-                <div className="editor-wrapper">
-                    <div className="headerTop">
+                <div className={styles.editorWrapper}>
+                    <div className={styles.headerTop}>
                         <FontAwesomeIcon
                             icon={faChevronLeft}
                             title="Go back"
@@ -123,7 +123,7 @@ export default function CodeEditor() {
                             }}
                         />
                     )}
-                    <div className="configs">
+                    <div className={styles.configs}>
                         {user !== null && user.uid === uid && (
                             <SelectLanguage
                                 setLanguage={(value) => {
@@ -134,7 +134,7 @@ export default function CodeEditor() {
                         )}
                         <FontAwesomeIcon
                             icon={copyIcon}
-                            className="copyIcon"
+                            className={styles.copyIcon}
                             title="Copy snippet to clipboard"
                             onClick={() => {
                                 navigator.clipboard.writeText(userCode);
@@ -145,7 +145,7 @@ export default function CodeEditor() {
                             }}
                         />
                     </div>
-                    <div className="editor">
+                    <div className={styles.editor}>
                         <Editor
                             disabled={user === null || user.uid !== uid}
                             value={userCode}
@@ -172,29 +172,29 @@ export default function CodeEditor() {
     );
 }
 
-function SaveBtns({ goBack, setSnippet }) {
+export function SaveBtns({ goBack, setSnippet }) {
     return (
-        <div className="btns">
-            <button type="button" className="cancel" onClick={goBack}>
+        <div className={styles.btns}>
+            <button type="button" className={styles.cancel} onClick={goBack}>
                 Cancel Changes
             </button>
-            <button type="button" className="save" onClick={setSnippet}>
+            <button type="button" className={styles.save} onClick={setSnippet}>
                 Save Changes
             </button>
         </div>
     );
 }
 
-function TogglePublic({ isPublic, setIsPublic }) {
+export function TogglePublic({ isPublic, setIsPublic }) {
     return (
-        <div className="togglePublic">
+        <div className={styles.togglePublic}>
             <p>Public Snippet: </p>
             <input type="checkbox" checked={isPublic} onChange={setIsPublic} />
         </div>
     );
 }
 
-function SelectLanguage({ setLanguage, lang }) {
+export function SelectLanguage({ setLanguage, lang }) {
     return (
         <Select
             defaultValue={lang}

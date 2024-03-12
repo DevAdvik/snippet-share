@@ -3,6 +3,7 @@ import snippets from "./assets/snippets.svg";
 import ellipse from "./assets/Ellipse.svg";
 import revolution from "./assets/revolutionize.svg";
 import phone from "./assets/mobile.svg";
+import featureEllipse from "./assets/feature-ellipse.svg";
 import styles from "./styles/homepage.module.css";
 import featureStyles from "./styles/features.module.css";
 import lastStyles from "./styles/landingpageLast.module.css";
@@ -92,7 +93,7 @@ function LandingPage() {
 
             <section className={featureStyles.features} id="features">
                 <div className={featureStyles.heading}>
-                    <img src="ellipse2" />
+                    <img src={featureEllipse} />
                     <p>Features</p>
                 </div>
 
