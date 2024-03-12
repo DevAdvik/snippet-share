@@ -165,7 +165,7 @@
     font-family: 'Montserrat Alternates', sans-serif;
     background: var(--bg-color);
     background: linear-gradient(170deg, #171819 34.1%, #4FFAF8 170.12%);
-    padding-bottom: 50px;
+    padding-bottom: 100px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
