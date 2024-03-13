@@ -126,7 +126,6 @@ function Header({ addSnippet, searchValue, setSearchValue }) {
                 <div className={styles.reactIcons}>
                     <Search searchValue={searchValue} setSearchValue={setSearchValue} />
                     <FontAwesomeIcon icon={faPlus} title="Add new snippet!" onClick={addSnippet} />
-                    <FontAwesomeIcon icon={faUser} title="Your Account" />
                 </div>
             </div>
         </>

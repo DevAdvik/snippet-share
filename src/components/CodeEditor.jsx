@@ -96,7 +96,7 @@ export default function CodeEditor() {
         <>
             {loading && <Loading />}
             {snippetNotFound && <ErrorPage missingSnippet={true} />}
-            {showSuccess && <Alert message="Saved Successfully!" type="success" showIcon />}
+            {showSuccess && <Alert message="Saved Successfully!" type="success" showIcon className={styles.successBox}/>}
             {!snippetNotFound && (isPublic || (user !== null && user.uid === uid)) && (
                 <div className={styles.editorWrapper}>
                     <div className={styles.headerTop}>

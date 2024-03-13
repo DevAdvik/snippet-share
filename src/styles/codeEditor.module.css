@@ -1,5 +1,5 @@
-.ant-alert-success {
-    position: absolute;
+.successBox {
+    position: fixed;
     top: 20px;
     right: 20px;
 }
@@ -31,6 +31,8 @@
         font-family: 'Montserrat', sans-serif;
         color: #e0e0e0;
         outline: none;
+        width: 100%;
+        max-width: 600px;
 
         &:focus {
             border-bottom: 1px solid;

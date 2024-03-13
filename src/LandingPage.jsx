@@ -9,8 +9,9 @@ import lastStyles from "./styles/landingpageLast.module.css";
 import footerStyles from "./styles/footer.module.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faGithub, faInstagram, faSnapchat, faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faGithub, faReact, faSnapchat } from "@fortawesome/free-brands-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 
 function LandingPage() {
     const navigator = useNavigate();
@@ -194,10 +195,28 @@ function LandingPage() {
                     </div>
                     <div className={footerStyles.icons}>
                         <div>
-                            <FontAwesomeIcon icon={faGithub} />
-                            <FontAwesomeIcon icon={faYoutube} />
-                            <FontAwesomeIcon icon={faInstagram} />
-                            <FontAwesomeIcon icon={faSnapchat} />
+                            <FontAwesomeIcon
+                                icon={faGithub}
+                                onClick={() => {
+                                    window.open("https://github.com/istoleabread/snippet-share");
+                                }}
+                                title="Snippet Sphere is open-source!"
+                            />
+                            <FontAwesomeIcon
+                                icon={faEnvelope}
+                                onClick={() => {
+                                    window.open("mailto://snippetsphere@advik.dev");
+                                }}
+                                title="Email us!"
+                            />
+                            <FontAwesomeIcon
+                                icon={faReact}
+                                title="This project was built in React!"
+                            />
+                            <FontAwesomeIcon
+                                icon={faSnapchat}
+                                title="This place felt empty so added a non-functional snapchat icon"
+                            />
                         </div>
                     </div>
                 </div>

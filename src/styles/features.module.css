@@ -18,7 +18,7 @@
         border-bottom-left-radius: 50%;
         border-bottom-right-radius: 50%;
         border-top: none;
-        padding: 50px;
+        padding: 80px 10px;
         box-shadow: 0px 10px 31px -7px var(--bg-color);
         margin-bottom: 50px;
 
@@ -141,13 +141,15 @@
     }
 
     .heading {
+        padding: 50px 0px !important;
+
         & img {
             margin-top: 0 !important;
             width: 100%;
         }
 
         & p {
-            font-size: 1.2rem !important;
+            font-size: 2rem !important;
         }
     }
 
