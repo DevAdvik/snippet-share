@@ -26,6 +26,14 @@
     margin: auto;
     color: #38dad8;
     font-family: 'Montserrat', sans-serif;
+    position: relative;
+}
+
+.linkCopyMessage {
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .snippetWrapper * {
@@ -202,10 +210,17 @@
     flex-direction: column;
     justify-content: space-between;
 
+    .copyLink {
+        position: absolute;
+        top: 20px;
+        right: 10px;
+    }
+
     & h2 {
         padding: 10px;
         padding-bottom: 0;
         color: #e0e0e0;
+        padding-right: 25px;
     }
 
     & p {

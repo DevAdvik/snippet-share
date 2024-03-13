@@ -1,7 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMagnifyingGlass, faUser } from "@fortawesome/free-solid-svg-icons";
 import styles from "../styles/Snippet.module.css";
 import logo from "../assets/SnippetSphere-vector.svg";
+import { Alert } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus, faMagnifyingGlass, faUser, faLink } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";
@@ -10,22 +11,49 @@ import { useNavigate } from "react-router-dom";
 import Tilt from "react-parallax-tilt";
 import firebaseConfig from "../firebase";
 import Login from "./login";
+import { useEffect, useState } from "react";
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 export default function SnippetList({ allSnippets, searchValue, setSearchValue }) {
     const [user] = useAuthState(auth);
+    const [showCopySuccess, setShowCopySuccess] = useState(false);
     const navigate = useNavigate();
+    useEffect(() => {
+        setTimeout(() => {
+            setShowCopySuccess(false);
+        }, 2500);
+    }, [showCopySuccess]);
+
     if (!user) {
         console.log("brother log in brother");
         return navigate("/login");
     }
+
+    const copyShareLink = (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        console.log(ev.target.closest("a"));
+        navigator.clipboard.writeText(ev.target.closest("a"));
+        setShowCopySuccess(true);
+    };
+
     return (
         <>
             {user ? (
                 <div className={styles.snippetBg}>
                     <div className={styles.snippetWrapper}>
+                        {showCopySuccess && (
+                            <Alert
+                                message="Link copied!"
+                                type="success"
+                                showIcon
+                                closable
+                                className={styles.linkCopyMessage}
+                            />
+                        )}
+
                         <Header
                             addSnippet={() => {
                                 navigate("/newSnippet");
@@ -53,6 +81,12 @@ export default function SnippetList({ allSnippets, searchValue, setSearchValue }
                                                     className={`${styles.limitLines} ${styles.limit2}`}
                                                 >
                                                     {snippet.title}
+                                                    <FontAwesomeIcon
+                                                        icon={faLink}
+                                                        className={styles.copyLink}
+                                                        onClick={copyShareLink}
+                                                        title="Copy share link"
+                                                    />
                                                 </h2>
                                                 <p
                                                     className={`${styles.limitLines} ${styles.limit3}`}
