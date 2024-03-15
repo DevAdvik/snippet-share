@@ -113,17 +113,25 @@
     color: white;
     width: 50%;
     margin-left: 80px;
+    overflow: hidden;
+    
 
     .tagline {
+        overflow: hidden;
+        transform: translateX(-600px);
 
         h1 {
             font-weight: 600;
             font-size: 3.8rem;
+        
+          
         }
 
         h3 {
             font-size: 2.2rem;
             font-weight: 500;
+            /* overflow: hidden; */
+          
 
             span {
                 color: var(--green-accent);
@@ -135,8 +143,12 @@
         font-family: 'Montserrat', sans-serif;
         width: 60%;
         font-size: 1.6rem;
+       
+        transform: translateX(-800px);
+        /* border:2px solid white; */
 
         span {
+            overflow: hidden;
             color: var(--green-accent);
         }
     }
@@ -146,6 +158,7 @@
     mix-blend-mode: lighten;
     margin-top: 50px;
     width: 100%;
+    scale: 0;
 }
 
 
@@ -157,6 +170,7 @@
 
     & img {
         width: 100%;
+        /* scale:0; */
     }
 }
 
@@ -197,6 +211,7 @@
             font-size: 1.3rem;
             align-items: center;
             padding-left: 50px;
+            transform: translateX(-1100px);
 
             img {
                 width: 50%;
@@ -211,6 +226,7 @@
             padding-left: 80px;
             font-size: 1.3rem;
             width: 60%;
+            transform: translateX(-700px);
 
             span {
                 color: var(--green-accent);
@@ -220,6 +236,7 @@
 
     .laptop {
         width: 60%;
+        transform: translateX(700px);
         height: 600px;
         background-position: left;
         background-repeat: no-repeat;
