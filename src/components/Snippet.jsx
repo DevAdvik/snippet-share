@@ -2,7 +2,7 @@ import styles from "../styles/Snippet.module.css";
 import logo from "../assets/SnippetSphere-vector.svg";
 import { Alert } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faMagnifyingGlass, faUser, faLink } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faMagnifyingGlass, faLink } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { initializeApp } from "firebase/app";

@@ -26,7 +26,7 @@ function ErrorPage({ missingSnippet }) {
                         `Page not found! Are you sure you entered the correct URL?`
                     )}
                 </h2>
-                <p>You may mistyped the address.</p>
+                <p>You may have mistyped the address:/</p>
                 <button>Go To Home</button>
             </div>
         </section>
