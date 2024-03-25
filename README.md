@@ -1,3 +1,3 @@
-# Snippet share
+# Snippet sphere
 
-This is a snippet sharing project
+Snippet Sphere is a code-snippet sharing web-app.
